@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OlharRouteImport } from './routes/olhar'
+import { Route as MetodoRouteImport } from './routes/metodo'
 import { Route as IndexRouteImport } from './routes/index'
 
 const OlharRoute = OlharRouteImport.update({
   id: '/olhar',
   path: '/olhar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodoRoute = MetodoRouteImport.update({
+  id: '/metodo',
+  path: '/metodo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/olhar'
+  fullPaths: '/' | '/metodo' | '/olhar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/olhar'
-  id: '__root__' | '/' | '/olhar'
+  to: '/' | '/metodo' | '/olhar'
+  id: '__root__' | '/' | '/metodo' | '/olhar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MetodoRoute: typeof MetodoRoute
   OlharRoute: typeof OlharRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/olhar'
       fullPath: '/olhar'
       preLoaderRoute: typeof OlharRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodo': {
+      id: '/metodo'
+      path: '/metodo'
+      fullPath: '/metodo'
+      preLoaderRoute: typeof MetodoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MetodoRoute: MetodoRoute,
   OlharRoute: OlharRoute,
 }
 export const routeTree = rootRouteImport
