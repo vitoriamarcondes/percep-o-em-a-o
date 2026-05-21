@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProjetosRouteImport } from './routes/projetos'
 import { Route as ProcessoRouteImport } from './routes/processo'
 import { Route as OlharRouteImport } from './routes/olhar'
@@ -16,6 +17,11 @@ import { Route as MetodoRouteImport } from './routes/metodo'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjetosRoute = ProjetosRouteImport.update({
   id: '/projetos',
   path: '/projetos',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/olhar': typeof OlharRoute
   '/processo': typeof ProcessoRoute
   '/projetos': typeof ProjetosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/olhar': typeof OlharRoute
   '/processo': typeof ProcessoRoute
   '/projetos': typeof ProjetosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,12 +79,27 @@ export interface FileRoutesById {
   '/olhar': typeof OlharRoute
   '/processo': typeof ProcessoRoute
   '/projetos': typeof ProjetosRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contato' | '/metodo' | '/olhar' | '/processo' | '/projetos'
+  fullPaths:
+    | '/'
+    | '/contato'
+    | '/metodo'
+    | '/olhar'
+    | '/processo'
+    | '/projetos'
+    | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contato' | '/metodo' | '/olhar' | '/processo' | '/projetos'
+  to:
+    | '/'
+    | '/contato'
+    | '/metodo'
+    | '/olhar'
+    | '/processo'
+    | '/projetos'
+    | '/sitemap.xml'
   id:
     | '__root__'
     | '/'
@@ -85,6 +108,7 @@ export interface FileRouteTypes {
     | '/olhar'
     | '/processo'
     | '/projetos'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,10 +118,18 @@ export interface RootRouteChildren {
   OlharRoute: typeof OlharRoute
   ProcessoRoute: typeof ProcessoRoute
   ProjetosRoute: typeof ProjetosRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projetos': {
       id: '/projetos'
       path: '/projetos'
@@ -150,7 +182,18 @@ const rootRouteChildren: RootRouteChildren = {
   OlharRoute: OlharRoute,
   ProcessoRoute: ProcessoRoute,
   ProjetosRoute: ProjetosRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
