@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProjetosRouteImport } from './routes/projetos'
 import { Route as OlharRouteImport } from './routes/olhar'
 import { Route as MetodoRouteImport } from './routes/metodo'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ProjetosRoute = ProjetosRouteImport.update({
+  id: '/projetos',
+  path: '/projetos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OlharRoute = OlharRouteImport.update({
   id: '/olhar',
   path: '/olhar',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
+  '/projetos': typeof ProjetosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/metodo' | '/olhar'
+  fullPaths: '/' | '/metodo' | '/olhar' | '/projetos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/metodo' | '/olhar'
-  id: '__root__' | '/' | '/metodo' | '/olhar'
+  to: '/' | '/metodo' | '/olhar' | '/projetos'
+  id: '__root__' | '/' | '/metodo' | '/olhar' | '/projetos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MetodoRoute: typeof MetodoRoute
   OlharRoute: typeof OlharRoute
+  ProjetosRoute: typeof ProjetosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/projetos': {
+      id: '/projetos'
+      path: '/projetos'
+      fullPath: '/projetos'
+      preLoaderRoute: typeof ProjetosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/olhar': {
       id: '/olhar'
       path: '/olhar'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MetodoRoute: MetodoRoute,
   OlharRoute: OlharRoute,
+  ProjetosRoute: ProjetosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
