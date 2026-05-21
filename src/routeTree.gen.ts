@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProjetosRouteImport } from './routes/projetos'
+import { Route as ProcessoRouteImport } from './routes/processo'
 import { Route as OlharRouteImport } from './routes/olhar'
 import { Route as MetodoRouteImport } from './routes/metodo'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ProjetosRoute = ProjetosRouteImport.update({
   id: '/projetos',
   path: '/projetos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessoRoute = ProcessoRouteImport.update({
+  id: '/processo',
+  path: '/processo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OlharRoute = OlharRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
+  '/processo': typeof ProcessoRoute
   '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
+  '/processo': typeof ProcessoRoute
   '/projetos': typeof ProjetosRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/metodo': typeof MetodoRoute
   '/olhar': typeof OlharRoute
+  '/processo': typeof ProcessoRoute
   '/projetos': typeof ProjetosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/metodo' | '/olhar' | '/projetos'
+  fullPaths: '/' | '/metodo' | '/olhar' | '/processo' | '/projetos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/metodo' | '/olhar' | '/projetos'
-  id: '__root__' | '/' | '/metodo' | '/olhar' | '/projetos'
+  to: '/' | '/metodo' | '/olhar' | '/processo' | '/projetos'
+  id: '__root__' | '/' | '/metodo' | '/olhar' | '/processo' | '/projetos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MetodoRoute: typeof MetodoRoute
   OlharRoute: typeof OlharRoute
+  ProcessoRoute: typeof ProcessoRoute
   ProjetosRoute: typeof ProjetosRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/projetos'
       fullPath: '/projetos'
       preLoaderRoute: typeof ProjetosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/processo': {
+      id: '/processo'
+      path: '/processo'
+      fullPath: '/processo'
+      preLoaderRoute: typeof ProcessoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/olhar': {
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MetodoRoute: MetodoRoute,
   OlharRoute: OlharRoute,
+  ProcessoRoute: ProcessoRoute,
   ProjetosRoute: ProjetosRoute,
 }
 export const routeTree = rootRouteImport
