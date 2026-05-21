@@ -5,18 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Vitória Marcondes — Editorial Brand System
+ * Off-white editorial base, ink black contrast, paper gray, with
+ * lime, deep editorial blue and mist pink as signature accents.
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -59,42 +53,56 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-lime: var(--lime);
+  --color-editorial: var(--editorial);
+  --color-mist: var(--mist);
+  --font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', 'Futura', 'Avenir', 'Helvetica Neue', sans-serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 1.25rem;
+  /* Off-white editorial #F8F4EC */
+  --background: oklch(0.965 0.012 85);
+  /* Ink black #11100E */
+  --foreground: oklch(0.18 0.005 60);
+  --ink: oklch(0.18 0.005 60);
+  --paper: oklch(0.875 0.012 80);
+  --lime: oklch(0.88 0.18 115);
+  --editorial: oklch(0.36 0.08 245);
+  --mist: oklch(0.86 0.045 28);
+  --card: oklch(0.965 0.012 85);
+  --card-foreground: oklch(0.18 0.005 60);
+  --popover: oklch(0.965 0.012 85);
+  --popover-foreground: oklch(0.18 0.005 60);
+  --primary: oklch(0.18 0.005 60);
+  --primary-foreground: oklch(0.965 0.012 85);
+  --secondary: oklch(0.875 0.012 80);
+  --secondary-foreground: oklch(0.18 0.005 60);
+  --muted: oklch(0.92 0.01 80);
+  --muted-foreground: oklch(0.45 0.01 60);
+  --accent: oklch(0.36 0.08 245);
+  --accent-foreground: oklch(0.965 0.012 85);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.85 0.01 80);
+  --input: oklch(0.85 0.01 80);
+  --ring: oklch(0.36 0.08 245);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sidebar: oklch(0.965 0.012 85);
+  --sidebar-foreground: oklch(0.18 0.005 60);
+  --sidebar-primary: oklch(0.18 0.005 60);
+  --sidebar-primary-foreground: oklch(0.965 0.012 85);
+  --sidebar-accent: oklch(0.875 0.012 80);
+  --sidebar-accent-foreground: oklch(0.18 0.005 60);
+  --sidebar-border: oklch(0.85 0.01 80);
+  --sidebar-ring: oklch(0.36 0.08 245);
 }
 
 .dark {
@@ -140,5 +148,92 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+
+  .font-display { font-family: var(--font-display); }
+  .font-sans    { font-family: var(--font-sans); }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--ink);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--ink);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .pill:hover { background: var(--lime); border-color: var(--lime); }
+  .pill[data-active="true"] { background: var(--ink); color: var(--background); border-color: var(--ink); }
+
+  .btn-ink {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 1.6rem; border-radius: 999px;
+    background: var(--ink); color: var(--background);
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .btn-ink:hover { background: var(--lime); color: var(--ink); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 1.6rem; border-radius: 999px;
+    border: 1px solid var(--ink); color: var(--ink);
+    font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--background); }
+
+  .edito-card {
+    border-radius: 1.75rem;
+    background: var(--background);
+    border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--ink) 4%, transparent),
+                0 30px 60px -40px color-mix(in oklab, var(--ink) 25%, transparent);
+    overflow: hidden;
+  }
+
+  .marquee {
+    display: flex; gap: 4rem; animation: marquee 40s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .lime-underline {
+    background-image: linear-gradient(transparent 62%, var(--lime) 62%, var(--lime) 92%, transparent 92%);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 0 0.15em;
+  }
+
+  .grain::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: 0.4; mix-blend-mode: multiply;
   }
 }
