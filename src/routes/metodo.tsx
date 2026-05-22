@@ -4,10 +4,10 @@ import { useState } from "react";
 export const Route = createFileRoute("/metodo")({
   head: () => ({
     meta: [
-      { title: "Método — Jornada de Presença · Vitória Marcondes" },
-      { name: "description", content: "Território → Essência → Linguagem → Presença. Um sistema para transformar intenção em valor percebido." },
-      { property: "og:title", content: "Jornada de Presença — Método" },
-      { property: "og:description", content: "Um processo para transformar intenção em valor percebido." },
+      { title: "Método — 4 pilares de marca · Vitória Marcondes" },
+      { name: "description", content: "Estratégia de negócio, essência, expressão e comunicação. Quatro pilares que constroem a jornada da marca e o vínculo com pessoas." },
+      { property: "og:title", content: "4 pilares de marca — Método" },
+      { property: "og:description", content: "Quatro pilares que constroem a jornada da marca e o vínculo estratégico com pessoas." },
     ],
   }),
   component: Metodo,
@@ -16,31 +16,31 @@ export const Route = createFileRoute("/metodo")({
 const steps = [
   {
     n: "01",
-    title: "Território",
-    body: "Entendo onde a marca está, quem ela quer alcançar e qual espaço pode ocupar.",
-    tags: "Mercado · público · comportamento · nicho · concorrência · cultura · oportunidade",
-    q: "Que lugar essa marca pode ocupar na percepção das pessoas?",
+    title: "Estratégia de negócio",
+    body: "Onde o criativo encontra o estratégico. Defino como a marca compete, para quem fala e o que promete antes de qualquer estética.",
+    tags: "Posicionamento · mantras da marca · análise de mercado · cliente ideal · oferta · nichos e subnichos",
+    q: "Antes de comunicar, é preciso decidir onde a marca compete e o que ela promete.",
   },
   {
     n: "02",
-    title: "Essência",
-    body: "Organizo o que sustenta a marca por dentro.",
-    tags: "Propósito · valores · diferenciação · manifesto · personalidade · promessa · desejo",
-    q: "O que essa marca quer significar?",
+    title: "Essência de marca",
+    body: "O que sustenta a marca por dentro — o núcleo simbólico do qual tudo o resto se desdobra.",
+    tags: "DNA · personalidade · valores · arquétipo · história de criação · manifesto · lifestyle · moodboard",
+    q: "A essência é o que sustenta a marca quando ninguém está olhando.",
   },
   {
     n: "03",
-    title: "Linguagem",
-    body: "Transformo estratégia em expressão visual e verbal.",
-    tags: "Direção de arte · tom de voz · paleta · tipografia · fotografia · símbolos · moodboard",
-    q: "Como essa marca precisa aparecer, falar e ser reconhecida?",
+    title: "Expressão visual e verbal",
+    body: "Traduzo estratégia e essência em forma reconhecível — tudo o que faz a marca ser vista, lida e ouvida.",
+    tags: "Cor · tipografia · logo · identidade fotográfica · símbolos · ícones · tom de voz · trilha sonora",
+    q: "Estética é estratégia tornada visível.",
   },
   {
     n: "04",
-    title: "Presença",
-    body: "Desdobro a marca em pontos reais de contato.",
-    tags: "Campanhas · conteúdo · eventos · ativações · relacionamento · comunidade · memória",
-    q: "Como essa marca deixa de apenas comunicar e passa a fazer parte da vida das pessoas?",
+    title: "Estratégia de comunicação",
+    body: "Como tudo isso vira presença viva — produção de conteúdo, formatos, linha editorial e o processo que estrutura a operação.",
+    tags: "Produção de conteúdo · formatos · linha editorial · ferramentas · processo · estrutura",
+    q: "Conteúdo é o desdobramento da estratégia no cotidiano das pessoas.",
   },
 ];
 
@@ -57,12 +57,12 @@ function Metodo() {
   return (
     <div>
       <section className="mx-auto max-w-[1400px] px-6 md:px-10 pt-16 md:pt-24 pb-12">
-        <p className="eyebrow text-editorial">Método · Sistema de inteligência</p>
+        <p className="eyebrow text-editorial">Método · 4 pilares de marca</p>
         <h1 className="font-display text-5xl md:text-8xl mt-4 leading-[0.9] max-w-4xl">
-          Jornada de <span className="italic">Presença</span>.
+          Estratégia de marca em <span className="italic">quatro pilares</span>.
         </h1>
         <p className="mt-8 max-w-xl text-ink/75 text-lg leading-relaxed">
-          Um processo para transformar intenção em valor percebido. Quatro etapas conectadas — território, essência, linguagem e presença.
+          Em cada projeto, esses quatro pilares constroem a <span className="lime-underline">jornada da marca</span> e estruturam a interação com os clientes — criando vínculo estratégico entre marca e pessoas.
         </p>
       </section>
 
@@ -119,7 +119,7 @@ function Metodo() {
 
       <section className="mx-auto max-w-[1400px] px-6 md:px-10 py-24 text-center">
         <p className="font-display text-3xl md:text-5xl italic max-w-3xl mx-auto">
-          "Propósito não é discurso. É <span className="lime-underline not-italic">comportamento</span> traduzido em linguagem."
+          "Marca forte não é a que aparece mais. É a que cria <span className="lime-underline not-italic">vínculo</span> com pessoas de maneira estratégica."
         </p>
         <div className="mt-10 flex justify-center gap-3">
           <Link to="/projetos" className="btn-ink">Ver projetos →</Link>
