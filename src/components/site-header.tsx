@@ -13,7 +13,7 @@ const nav = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/85 border-b border-ink/10">
+    <header className="sticky top-0 z-50 bg-lime border-b border-ink/10">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10 flex items-center justify-between h-16">
         <Link to="/" className="flex items-baseline gap-2">
           <span className="font-display text-xl tracking-tight">Vitória Marcondes</span>
@@ -40,7 +40,7 @@ export function SiteHeader() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden border-t border-ink/10 bg-background">
+        <div className="md:hidden border-t border-ink/10 bg-lime">
           <nav className="flex flex-col p-6 gap-4">
             {nav.map((n) => (
               <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-display text-2xl">
