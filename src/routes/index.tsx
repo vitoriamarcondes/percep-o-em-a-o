@@ -8,7 +8,7 @@ import heroImg from "@/assets/hero-editorial.jpg";
 import marcaValorPercebido from "@/assets/marca-valor-percebido.jpeg";
 import marcaValorPercebidoVideo from "@/assets/marca-valor-percebido-video.mp4";
 import mood2 from "@/assets/moodboard-2.jpg";
-import { projects, FILTERS } from "@/data/projects";
+import { projects, FILTERS, FILTER_DESCRIPTIONS } from "@/data/projects";
 import { buildSeo } from "@/lib/seo";
 
 const marqueeItems = [
@@ -263,11 +263,8 @@ function Home() {
             <p className="eyebrow text-editorial">
               03 &middot; Projetos &amp; Dire&ccedil;&otilde;es
             </p>
-            <h2 className="font-display text-4xl md:text-5xl mt-2">Filtrar por território</h2>
+            <h2 className="font-display text-4xl md:text-5xl mt-2">Filtrar por criação</h2>
           </div>
-          <p className="text-sm text-ink/60 max-w-xs">
-            Cada projeto é apresentado pelo que transformou — não pela marca, mas pela percepção.
-          </p>
         </div>
         <div className="flex flex-wrap gap-2">
           {FILTERS.map((f) => (
@@ -281,6 +278,11 @@ function Home() {
             </button>
           ))}
         </div>
+        {filter !== "Todos" && (
+          <p className="mt-4 max-w-xl text-sm font-light leading-relaxed text-ink/50">
+            {FILTER_DESCRIPTIONS[filter as (typeof FILTERS)[number]]}
+          </p>
+        )}
 
         {/* Projects grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">

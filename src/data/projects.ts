@@ -58,17 +58,25 @@ export type Project = {
 
 export const FILTERS = [
   "Todos",
-  "Universo de Marca",
-  "Expressão Visual",
-  "Presença & Mercado",
-  "Estratégia de marca",
-  "Direção criativa",
+  "Estratégia de Marca",
+  "Identidade Visual",
+  "Mercado & Posicionamento",
+  "Comunicação Comercial",
   "Campanhas",
-  "Identidade visual",
-  "Marcas com propósito",
   "Experiências",
-  "Comunicação comercial",
+  "Cultura & Comportamento",
 ] as const;
+
+export const FILTER_DESCRIPTIONS: Record<(typeof FILTERS)[number], string> = {
+  Todos: "Mostrar todos os projetos.",
+  "Estratégia de Marca": "Posicionamento, narrativa, conceito e construção de marcas.",
+  "Identidade Visual": "Sistemas visuais, identidade e códigos de reconhecimento.",
+  "Mercado & Posicionamento": "Cultura, comportamento e estratégia aplicada ao mercado.",
+  "Comunicação Comercial": "Comunicação orientada para crescimento, relacionamento e valor percebido.",
+  Campanhas: "Conceito criativo, narrativa e campanhas de comunicação.",
+  Experiências: "Jornadas, comunidades e experiências que fortalecem a marca.",
+  "Cultura & Comportamento": "Pesquisa, repertório e comportamento transformados em estratégia criativa.",
+};
 
 export const projects: Project[] = [
   {
@@ -128,7 +136,12 @@ export const projects: Project[] = [
       "/aura/14.png",
       "/aura/15.png",
     ],
-    filters: ["Marcas com propósito", "Estratégia de marca"],
+    filters: [
+      "Estratégia de Marca",
+      "Identidade Visual",
+      "Mercado & Posicionamento",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "identidade-sensacao",
@@ -188,7 +201,12 @@ export const projects: Project[] = [
       nalu18,
       nalu19,
     ],
-    filters: ["Universo de Marca", "Expressão Visual", "Presença & Mercado"],
+    filters: [
+      "Estratégia de Marca",
+      "Identidade Visual",
+      "Mercado & Posicionamento",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "estrutura-intuitivo",
@@ -307,7 +325,13 @@ export const projects: Project[] = [
       "/estudio-mina/S7RLnyqGuhT_576.mp4",
       "/elanova-story-1/17.png",
     ],
-    filters: ["Estratégia de marca"],
+    filters: [
+      "Estratégia de Marca",
+      "Identidade Visual",
+      "Mercado & Posicionamento",
+      "Experiências",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "produto-imaginario",
@@ -354,7 +378,11 @@ export const projects: Project[] = [
       "Mais do que aumentar o número de revendedores, o projeto contribuiu para consolidar uma estrutura comercial replicável e orientada a resultados.",
     image: "/estudio-mina/whatsapp-corona-2026-06-11.jpeg",
     gallery: ["/estudio-mina/whatsapp-corona-2026-06-11.jpeg"],
-    filters: ["Campanhas", "Direção criativa"],
+    filters: [
+      "Mercado & Posicionamento",
+      "Comunicação Comercial",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "publico-estrategia",
@@ -411,7 +439,12 @@ export const projects: Project[] = [
       "/ana-cristina/21.png",
       "/ana-cristina/22.png",
     ],
-    filters: ["Comunicação comercial", "Estratégia de marca"],
+    filters: [
+      "Estratégia de Marca",
+      "Identidade Visual",
+      "Mercado & Posicionamento",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "presenca-permanece",
@@ -457,7 +490,14 @@ export const projects: Project[] = [
       "/ceres-manifesto/8.png",
       "/ceres-manifesto/9.png",
     ],
-    filters: ["Experiências", "Direção criativa"],
+    filters: [
+      "Estratégia de Marca",
+      "Mercado & Posicionamento",
+      "Comunicação Comercial",
+      "Campanhas",
+      "Experiências",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "ate-quando-explicar-obvio",
@@ -506,7 +546,7 @@ export const projects: Project[] = [
       "/campanha-mulheres/9.jpg",
       "/campanha-mulheres/10.mp4",
     ],
-    filters: ["Campanhas", "Comunicação comercial", "Estratégia de marca"],
+    filters: ["Campanhas", "Cultura & Comportamento"],
   },
   {
     id: "saude-e-previdencia",
@@ -603,7 +643,13 @@ export const projects: Project[] = [
       "/saude-e-previdencia/49.png",
       "/saude-e-previdencia/50.png",
     ],
-    filters: ["Campanhas", "Direção criativa", "Estratégia de marca"],
+    filters: [
+      "Identidade Visual",
+      "Comunicação Comercial",
+      "Campanhas",
+      "Experiências",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "a-conversa-ta-boa",
@@ -665,7 +711,12 @@ export const projects: Project[] = [
       "/a-conversa-ta-boa/15.png",
       "/a-conversa-ta-boa/16.png",
     ],
-    filters: ["Campanhas", "Comunicação comercial", "Estratégia de marca"],
+    filters: [
+      "Comunicação Comercial",
+      "Campanhas",
+      "Experiências",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "truvarao",
@@ -740,7 +791,13 @@ export const projects: Project[] = [
       "/truvarao/17.jpg",
       "/truvarao/18.jpg",
     ],
-    filters: ["Experiências", "Direção criativa", "Campanhas"],
+    filters: [
+      "Identidade Visual",
+      "Comunicação Comercial",
+      "Campanhas",
+      "Experiências",
+      "Cultura & Comportamento",
+    ],
   },
   {
     id: "florescer",
@@ -844,7 +901,7 @@ export const projects: Project[] = [
       "/florescer/51.png",
       "/florescer/53.png",
     ],
-    filters: ["Marcas com propósito", "Experiências", "Direção criativa"],
+    filters: ["Identidade Visual", "Experiências"],
   },
   {
     id: "lizianto",
@@ -901,12 +958,7 @@ export const projects: Project[] = [
       "/lizianto/12.png",
       "/lizianto/13.png",
     ],
-    filters: [
-      "Universo de Marca",
-      "Expressão Visual",
-      "Direção criativa",
-      "Identidade visual",
-    ],
+    filters: ["Estratégia de Marca", "Identidade Visual"],
   },
   {
     id: "avanzzo",
@@ -966,9 +1018,11 @@ export const projects: Project[] = [
       "/avanzzo/16.png",
     ],
     filters: [
-      "Presença & Mercado",
-      "Estratégia de marca",
-      "Comunicação comercial",
+      "Estratégia de Marca",
+      "Mercado & Posicionamento",
+      "Comunicação Comercial",
+      "Experiências",
+      "Cultura & Comportamento",
     ],
   },
   {
@@ -1034,9 +1088,11 @@ export const projects: Project[] = [
       "/retiro-acenda/17.png",
     ],
     filters: [
+      "Estratégia de Marca",
+      "Mercado & Posicionamento",
+      "Comunicação Comercial",
       "Experiências",
-      "Direção criativa",
-      "Presença & Mercado",
+      "Cultura & Comportamento",
     ],
   },
   {
@@ -1090,11 +1146,9 @@ export const projects: Project[] = [
       "/soleil/10.png",
     ],
     filters: [
-      "Universo de Marca",
-      "Expressão Visual",
-      "Estratégia de marca",
-      "Direção criativa",
-      "Identidade visual",
+      "Estratégia de Marca",
+      "Identidade Visual",
+      "Cultura & Comportamento",
     ],
   },
 ];

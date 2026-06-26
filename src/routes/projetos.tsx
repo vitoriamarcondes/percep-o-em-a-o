@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { projects, FILTERS } from "@/data/projects";
+import { projects, FILTERS, FILTER_DESCRIPTIONS } from "@/data/projects";
 import {
   Carousel,
   CarouselContent,
@@ -197,6 +197,11 @@ function Projetos() {
             ))}
           </div>
         </div>
+        {filter !== "Todos" && (
+          <p className="mb-10 max-w-xl text-sm font-light leading-relaxed text-ink/50">
+            {FILTER_DESCRIPTIONS[filter as (typeof FILTERS)[number]]}
+          </p>
+        )}
 
         <div className="grid md:grid-cols-2 gap-6">
           {visible.map((p, i) => (
