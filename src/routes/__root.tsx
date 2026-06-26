@@ -77,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Vitória Marcondes — Estratégia, direção criativa & narrativa de marca" },
       { name: "description", content: "Transformo percepção em presença. Estratégia de marca, direção criativa e comunicação para marcas que precisam ser mais claras, desejáveis e memoráveis." },
       { name: "author", content: "Vitória Marcondes" },
-      { property: "og:title", content: "Vitória Marcondes — Brand · Creative Direction" },
+      { property: "og:title", content: "Vitória Marcondes — Transformo percepção em presença" },
       { property: "og:description", content: "Não crio apenas o que uma marca mostra. Construo o que ela passa a significar." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

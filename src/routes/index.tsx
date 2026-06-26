@@ -1,9 +1,52 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import heroCoverCollageBw from "@/assets/hero-cover-collage-bw.jpeg";
+import heroCoverMagazine from "@/assets/hero-cover-magazine.png";
+import heroCoverWall from "@/assets/hero-cover-wall.png";
 import heroImg from "@/assets/hero-editorial.jpg";
-import mood1 from "@/assets/moodboard-1.jpg";
+import marcaValorPercebido from "@/assets/marca-valor-percebido.jpeg";
+import marcaValorPercebidoVideo from "@/assets/marca-valor-percebido-video.mp4";
 import mood2 from "@/assets/moodboard-2.jpg";
 import { projects, FILTERS } from "@/data/projects";
+
+const marqueeItems = [
+  { number: "01", title: "Leitura de mercado." },
+  { number: "02", title: "Intelig\u00eancia cultural." },
+  { number: "03", title: "Narrativa de marca." },
+  { number: "04", title: "Dire\u00e7\u00e3o criativa." },
+  { number: "05", title: "C\u00f3digos de express\u00e3o." },
+  { number: "06", title: "Constru\u00e7\u00e3o de desejo." },
+  { number: "07", title: "Presen\u00e7a estrat\u00e9gica." },
+];
+
+const brandPartners = [
+  { name: "Ambev", logo: "/brand-logos/ambev.png", href: "https://www.ambev.com.br/" },
+  { name: "Mina", logo: "/brand-logos/mina.png", href: "https://www.instagram.com/e.s.t.u.d.i.o.m.i.n.a/" },
+  { name: "Taiji", logo: "/brand-logos/taiji.png", href: "https://www.instagram.com/taiji.store/" },
+  { name: "VILA VILAÇA", logo: "/brand-logos/vila-vilaca.png", href: "https://www.instagram.com/vilavilacajoalheria/" },
+  { name: "Misses", logo: "/brand-logos/misses.png", href: "https://www.instagram.com/missesbrand/" },
+  { name: "2Tempos", logo: "/brand-logos/2tempos.png", href: "https://www.instagram.com/2tempos/" },
+  { name: "Le Cult", logo: "/brand-logos/le-cult.png", href: "https://www.instagram.com/lecult/" },
+  { name: "Vivaz", logo: "/brand-logos/vivaz.png", href: "https://www.instagram.com/vivazbrasil/" },
+  { name: "Raris", logo: "/brand-logos/raris.png", href: "https://www.instagram.com/rarisbrand/" },
+  { name: "Ceres", logo: "/brand-logos/ceres.png", href: "https://www.ceres.org.br/" },
+  { name: "Tikhê Arquitetura", logo: "/brand-logos/tikhe-arquitetura.png", href: "https://www.instagram.com/tikhe.arquitetura/" },
+  { name: "Madavelas", logo: "/brand-logos/madavelas.png", href: "https://www.instagram.com/madavelas.home/" },
+  { name: "Eternità Joalheria", logo: "/brand-logos/eternita-joalheria.png", href: "https://www.instagram.com/eternitajoalheria/" },
+  { name: "Kalandra Brand", logo: "/brand-logos/kalandra-brand.png", href: "https://www.instagram.com/kalandra.brand/" },
+  { name: "Debora Carvalho", logo: "/brand-logos/debora-carvalho.png", href: "https://www.instagram.com/deboracarvalhobrand/" },
+  { name: "CGDF", logo: "/brand-logos/cgdf.png", href: "https://www.instagram.com/cgdfoficial/" },
+];
+
+const isVideoMedia = (media: string) => media.toLowerCase().endsWith(".mp4");
+
+const heroCoverImages = [
+  { src: heroImg, alt: "Retrato editorial" },
+  { src: heroCoverCollageBw, alt: "Pesquisa visual em preto e branco" },
+  { src: heroCoverWall, alt: "Painel de referências visuais" },
+  { src: marcaValorPercebido, alt: "Processo criativo no tablet" },
+  { src: heroCoverMagazine, alt: "Revista aberta com referências de moda" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,7 +57,7 @@ export const Route = createFileRoute("/")({
         content:
           "Estratégia de marca, direção criativa e comunicação para marcas que precisam ser mais claras, desejáveis e memoráveis.",
       },
-      { property: "og:title", content: "Vitória Marcondes — Brand · Creative Direction" },
+      { property: "og:title", content: "Vitória Marcondes — Transformo percepção em presença" },
       {
         property: "og:description",
         content: "Não crio apenas o que uma marca mostra. Construo o que ela passa a significar.",
@@ -26,7 +69,41 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const [filter, setFilter] = useState<string>("Todos");
+  const statsRef = useRef<HTMLElement>(null);
+  const [statsActive, setStatsActive] = useState(false);
   const visible = projects.filter((p) => filter === "Todos" || p.filters.includes(filter));
+
+  useEffect(() => {
+    const element = statsRef.current;
+
+    if (!element) return;
+
+    const updateVisibility = () => {
+      const rect = element.getBoundingClientRect();
+      const visibleTrigger = window.innerHeight * 0.76;
+      const isVisible = rect.top < visibleTrigger && rect.bottom > window.innerHeight * 0.14;
+
+      setStatsActive(isVisible);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setStatsActive(entry.isIntersecting);
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.35 },
+    );
+
+    observer.observe(element);
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateVisibility);
+      window.removeEventListener("resize", updateVisibility);
+    };
+  }, []);
 
   return (
     <div>
@@ -37,25 +114,31 @@ function Home() {
             <span className="h-2 w-2 rounded-full bg-lime" />
             <span className="eyebrow text-ink/70">Direção Criativa & Brand Intelligence</span>
             <span className="hidden md:block flex-1 h-px bg-ink/15" />
-            <span className="hidden md:block eyebrow text-ink/50">Creative Brand Intelligence</span>
+            <span className="hidden md:flex flex-col items-end gap-1 text-right">
+              <span className="eyebrow text-ink/60">
+                Mercado &middot; Cultura &middot; Dire&ccedil;&atilde;o de Arte
+              </span>
+            </span>
           </div>
 
           <div className="grid gap-12 xl:grid-cols-[minmax(0,1.75fr)_minmax(340px,0.75fr)] xl:gap-10 items-start xl:items-end">
             <div className="relative z-20 min-w-0 xl:pr-4">
               <h1 className="font-display text-[3.25rem] sm:text-[4.6rem] xl:text-[5.9rem] 2xl:text-[6.75rem] leading-[0.98] tracking-[0] text-balance">
                 <span className="block">Faça sua marca</span>
-                <span className="block">ganhar voz,</span>
                 <span className="block">
-                  <span className="italic font-light">desejo</span> e{" "}
+                  ganhar voz, <span className="italic font-light">desejo</span>
+                </span>
+                <span className="block">
+                  &{" "}
                   <span className="lime-underline">presença</span>.
                 </span>
               </h1>
               <p className="mt-10 max-w-xl text-lg md:text-xl text-ink/75 leading-relaxed">
                 Direção criativa e inteligência de mercado que transforma estratégia em narrativa,
-                imagem, desejo e expressão.
+                imagem, propósito e expressão.
               </p>
               <p className="mt-6 max-w-xl text-base text-ink/55 italic font-display">
-                "Não crio apenas o que uma marca mostra. Construo o que ela passa a significar."
+                "Marcas se tornam referências pela combinação entre arte, estratégia e propósito."
               </p>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Link to="/projetos" className="btn-ink">
@@ -67,22 +150,27 @@ function Home() {
               </div>
               <div className="mt-12 flex items-center gap-6 text-xs eyebrow text-ink/60">
                 <span>Vitória Marcondes</span>
-                <span className="h-px w-12 bg-ink/30" />
-                <span>Brand · Direction · Storytelling</span>
               </div>
             </div>
             <div className="relative z-0 min-w-0 w-full max-w-[420px] justify-self-start xl:justify-self-end xl:max-w-[460px]">
-              <div className="edito-card aspect-[4/5] relative">
-                <img
-                  src={heroImg}
-                  alt="Editorial portrait"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-5 left-5 right-5 flex justify-between text-[10px] eyebrow text-background mix-blend-difference">
+              <div className="edito-card aspect-[4/5] relative bg-background p-6">
+                <div className="hero-cover-slideshow rounded-[1.25rem]" aria-label="Capa editorial em movimento">
+                  <div className="hero-cover-track">
+                    {[...heroCoverImages, heroCoverImages[0]].map((image, index) => (
+                      <img
+                        key={`${image.src}-${index}`}
+                        src={image.src}
+                        alt={image.alt}
+                        className="hero-cover-slide"
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="absolute top-5 left-6 right-6 flex justify-between text-[10px] eyebrow text-ink">
                   <span>Cover · 2026</span>
                   <span>Nº 01</span>
                 </div>
-                <div className="absolute bottom-5 left-5 right-5 flex justify-between items-end text-background mix-blend-difference">
+                <div className="absolute bottom-5 left-6 right-6 flex justify-between items-end text-ink">
                   <span className="font-display text-2xl italic">in motion</span>
                   <span className="eyebrow text-[10px]">brand feeling</span>
                 </div>
@@ -100,7 +188,7 @@ function Home() {
         {/* Project marquee */}
         <div className="border-y border-ink/15 py-5 bg-paper/40 overflow-hidden">
           <div className="marquee whitespace-nowrap font-display text-2xl md:text-3xl italic">
-            {[...projects, ...projects].map((p, i) => (
+            {[...marqueeItems, ...marqueeItems].map((p, i) => (
               <span key={i} className="flex items-center gap-6">
                 <span className="eyebrow text-xs not-italic text-editorial">{p.number}</span>
                 {p.title}
@@ -111,11 +199,37 @@ function Home() {
         </div>
       </section>
 
+      {/* BRANDS */}
+      <section className="brand-belt border-b border-ink/10 bg-background">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-16 md:py-20">
+          <div className="grid gap-8 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
+            <div>
+              <p className="eyebrow text-editorial">02 &middot; PORTFÓLIO DE MARCAS</p>
+              <h2 className="font-display text-4xl md:text-5xl mt-3 leading-[1]">
+                Repertório de Mercado
+              </h2>
+              <p className="mt-5 text-sm leading-relaxed text-ink/60 max-w-sm">
+                Marcas e projetos desenvolvidos ao longo da minha trajetória profissional,
+                conectando estratégia, criatividade, comportamento e construção de presença.
+              </p>
+            </div>
+
+            <div className="brand-orbit" aria-label="Marcas atendidas">
+              <div className="brand-track brand-track-a">
+                {[...brandPartners, ...brandPartners].map((brand, index) => (
+                  <BrandLogo key={`${brand.name}-a-${index}`} brand={brand} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FILTERS */}
       <section className="mx-auto max-w-[1400px] px-6 md:px-10 py-16">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
           <div>
-            <p className="eyebrow text-editorial">02 · Index editorial</p>
+            <p className="eyebrow text-editorial">03 &middot; Projetos &amp; Dire&ccedil;&otilde;es</p>
             <h2 className="font-display text-4xl md:text-5xl mt-2">Filtrar por território</h2>
           </div>
           <p className="text-sm text-ink/60 max-w-xs">
@@ -149,18 +263,22 @@ function Home() {
           <div className="lg:col-span-7">
             <p className="eyebrow text-editorial mb-6">03 · Diagnóstico</p>
             <h2 className="font-display text-4xl md:text-6xl leading-[1] max-w-2xl">
-              Sua marca pode ser boa. Mas ela está sendo <span className="italic">percebida</span>{" "}
-              do jeito certo?
+              Sua marca pode ser boa. Mas ela comunica aquilo que a torna{" "}
+              <span className="lime-underline italic">única</span>?
             </h2>
             <div className="mt-10 max-w-xl text-ink/75 space-y-4 text-base leading-relaxed">
-              <p>Boas ideias nem sempre viram marcas fortes.</p>
+              <p>Marcas também têm personalidade.</p>
               <p>
-                Às vezes falta clareza. Às vezes falta desejo. Às vezes falta consistência. Às vezes
-                falta uma linguagem que organize tudo.
+                Elas são percebidas pelas referências que escolhem, pela forma como se apresentam,
+                pelos espaços que ocupam e pelas conversas que decidem participar.
               </p>
               <p>
-                Eu trabalho nesse espaço: entre o que a marca é, o que ela quer vender e o que as
-                pessoas precisam perceber para se aproximar.
+                Antes de criar qualquer direção, eu observo esses códigos. Entendo o contexto, o
+                mercado, o comportamento das pessoas e a imagem que está sendo construída hoje.
+              </p>
+              <p>
+                Porque direção criativa não é apenas uma questão estética, mas sim, a forma como uma
+                marca se posiciona, gera identificação e constrói relevância.
               </p>
             </div>
             <div className="mt-10 inline-block">
@@ -171,10 +289,13 @@ function Home() {
           </div>
           <div className="lg:col-span-5 relative">
             <div className="edito-card aspect-[4/5]">
-              <img
-                src={mood1}
-                alt="Strategist moodboard"
-                loading="lazy"
+              <video
+                src={marcaValorPercebidoVideo}
+                aria-label="Processo criativo em movimento"
+                autoPlay
+                muted
+                loop
+                playsInline
                 className="w-full h-full object-cover"
               />
             </div>
@@ -192,45 +313,43 @@ function Home() {
       <section className="mx-auto max-w-[1400px] px-6 md:px-10 py-24">
         <p className="eyebrow text-editorial">04 · Posicionamento</p>
         <h2 className="font-display text-4xl md:text-6xl mt-3 max-w-3xl leading-[1]">
-          Não vendo estética. Construo <span className="italic">valor percebido</span>.
+          Não vendo estética. Construo <span className="lime-underline italic">valor percebido</span>.
         </h2>
         <p className="mt-8 max-w-2xl text-ink/75 leading-relaxed">
-          Meu trabalho conecta estratégia comercial, direção criativa, comportamento e narrativa
-          para transformar marcas, campanhas e experiências em presenças mais reconhecíveis. Ajudo
-          projetos a saírem do genérico e ocuparem um lugar mais claro na mente, no desejo e na vida
-          das pessoas.
+          Meu trabalho é entender o que torna uma marca única e transformar isso em uma linguagem
+          capaz de gerar reconhecimento, desejo e relevância.
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-14">
           {[
             {
-              n: "i",
-              t: "Clareza",
-              d: "Para marcas que precisam comunicar melhor o próprio valor.",
+              n: "I ✦",
+              t: "Identidade",
+              d: "Construir uma linguagem própria para cada marca.",
             },
             {
-              n: "ii",
+              n: "ii ✦",
+              t: "Cultura",
+              d: "Conectar comportamento, repertório e contexto de mercado.",
+            },
+            {
+              n: "iii ✦",
               t: "Desejo",
-              d: "Para produtos, serviços e ideias que precisam ganhar imaginário.",
+              d: "Criar narrativas que aumentem valor percebido e identificação.",
             },
-            { n: "iii", t: "Consistência", d: "Para comunicações que ainda parecem fragmentadas." },
             {
-              n: "iv",
+              n: "iv ✦",
               t: "Presença",
-              d: "Para marcas que querem ser lembradas pelo que significam.",
+              d: "Desenvolver marcas capazes de ocupar um lugar próprio na memória e no mercado.",
             },
           ].map((c) => (
             <div
               key={c.t}
               className="edito-card p-7 group hover:bg-ink hover:text-background transition-colors duration-500"
             >
-              <div className="flex items-center justify-between mb-12">
-                <span className="eyebrow text-editorial group-hover:text-lime">{c.n}</span>
-                <span className="text-lime opacity-0 group-hover:opacity-100 transition-opacity">
-                  ✦
-                </span>
-              </div>
-              <h3 className="font-display text-3xl">{c.t}</h3>
+              <h3 className="font-display text-3xl leading-none">
+                <span className="text-editorial group-hover:text-lime">{c.n}</span> {c.t}
+              </h3>
               <p className="mt-3 text-sm opacity-70 leading-relaxed">{c.d}</p>
             </div>
           ))}
@@ -238,37 +357,64 @@ function Home() {
       </section>
 
       {/* NUMEROS */}
-      <section className="bg-ink text-background">
+      <section ref={statsRef} className="bg-ink text-background">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-24">
           <p className="eyebrow text-lime">05 · Repertório aplicado</p>
           <h2 className="font-display text-4xl md:text-6xl mt-3 max-w-3xl leading-[1]">
             Experiência aplicada em marca, público e comunicação.
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-background/10 mt-14 rounded-3xl overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-background/10 mt-14 rounded-3xl overflow-visible">
             {[
               {
                 n: "7+",
+                countTo: 7,
+                suffix: "+",
                 l: "anos",
                 d: "atuando entre comunicação, campanhas, conteúdo, direção visual e estratégia.",
               },
               {
                 n: "3×",
+                countTo: 3,
+                suffix: "×",
                 l: "mais carteira atendida",
                 d: "em experiência comercial com relacionamento, capacitação e adaptação de linguagem.",
               },
               {
                 n: "400+",
+                countTo: 400,
+                suffix: "+",
                 l: "pessoas",
                 d: "em experiência criada e produzida com ingressos esgotados.",
               },
               {
                 n: "03",
+                countTo: 3,
+                pad: 2,
                 l: "reconhecimentos",
-                d: "por impacto, crescimento e conexão em projeto de comunicação.",
+                d: "por pesquisa, inovação e projetos de impacto.",
+                recognitions: [
+                  {
+                    n: "01",
+                    t: "Projeto de Iniciação Científica (PIBIC) | UnB",
+                    d: "Pesquisa sobre liderança feminina e gestão do bem-estar nas organizações, desenvolvida no Programa Institucional de Bolsas de Iniciação Científica.",
+                  },
+                  {
+                    n: "02",
+                    t: "Finalista Nacional | Expocom",
+                    d: "Reconhecimento no Congresso Brasileiro de Ciências da Comunicação pelo projeto sobre prevenção ao recrutamento virtual para exploração sexual.",
+                  },
+                  {
+                    n: "03",
+                    t: "Projeto de Extensão | SOS Imprensa",
+                    d: "Atuação voluntária em projeto da Faculdade de Comunicação da UnB voltado à educação midiática, cidadania e fortalecimento da relação entre comunicação e sociedade.",
+                  },
+                ],
               },
               {
                 n: "08",
+                countTo: 8,
+                pad: 2,
                 l: "setores",
                 d: "moda, lifestyle, previdência, setor público, comercial, institucional, social e marcas com propósito.",
               },
@@ -278,12 +424,24 @@ function Home() {
                 d: "atravessar mercados diferentes me ensinou a ler pessoas antes de criar para marcas.",
               },
             ].map((s, i) => (
-              <div key={i} className="bg-ink p-8 md:p-10">
-                <div className="font-display text-6xl md:text-7xl text-lime leading-none">
-                  {s.n}
-                </div>
+              <div key={i} className="group relative bg-ink p-8 md:p-10">
+                <AnimatedStatNumber stat={s} active={statsActive} />
                 <div className="eyebrow mt-3 text-background/60">{s.l}</div>
                 <p className="mt-4 text-sm text-background/80 leading-relaxed">{s.d}</p>
+                {"recognitions" in s && (
+                  <div className="absolute left-0 top-full z-30 hidden w-[min(760px,calc(100vw-3rem))] gap-3 rounded-[1.5rem] border border-ink/10 bg-background p-3 text-ink shadow-2xl group-hover:grid group-focus-within:grid md:grid-cols-3">
+                    {s.recognitions.map((item) => (
+                      <div
+                        key={item.n}
+                        className="rounded-[1.1rem] border border-ink/10 bg-paper/50 p-5"
+                      >
+                        <p className="eyebrow text-editorial">{item.n}</p>
+                        <h3 className="mt-3 font-display text-xl leading-tight">{item.t}</h3>
+                        <p className="mt-3 text-xs leading-relaxed text-ink/70">{item.d}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -370,20 +528,108 @@ function Home() {
   );
 }
 
+function AnimatedStatNumber({
+  stat,
+  active,
+}: {
+  stat: { n: string; countTo?: number; suffix?: string; pad?: number };
+  active: boolean;
+}) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (typeof stat.countTo !== "number") return;
+
+    if (!active) {
+      setValue(0);
+      return;
+    }
+
+    let frame = 0;
+    const start = performance.now();
+    const duration = 1450;
+
+    const tick = (time: number) => {
+      const progress = Math.min((time - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      setValue(Math.round(stat.countTo! * eased));
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      }
+    };
+
+    frame = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(frame);
+  }, [active, stat.countTo]);
+
+  const displayed =
+    typeof stat.countTo === "number"
+      ? `${String(value).padStart(stat.pad ?? 0, "0")}${stat.suffix ?? ""}`
+      : stat.n;
+
+  return (
+    <div
+      className={`font-display text-6xl md:text-7xl text-lime leading-none ${
+        active ? "stat-number-active" : ""
+      }`}
+    >
+      {displayed}
+    </div>
+  );
+}
+
+function BrandLogo({
+  brand,
+  tabIndex,
+}: {
+  brand: (typeof brandPartners)[number];
+  tabIndex?: number;
+}) {
+  return (
+    <a
+      href={brand.href}
+      target="_blank"
+      rel="noreferrer"
+      tabIndex={tabIndex}
+      className="brand-token"
+      aria-label={`Abrir ${brand.name}`}
+    >
+      <span className="brand-token-image">
+        <img src={brand.logo} alt="" loading="lazy" />
+      </span>
+      <span className="brand-token-name">{brand.name}</span>
+    </a>
+  );
+}
+
 function ProjectCard({ p }: { p: (typeof projects)[number] }) {
   return (
-    <Link
-      to="/projetos"
-      hash={p.id}
+    <a
+      href={`/projetos?project=${p.id}`}
       className="edito-card group block relative overflow-hidden hover:-translate-y-1 transition-transform duration-500"
     >
       <div className="aspect-[4/5] overflow-hidden relative">
-        <img
-          src={p.image}
-          alt={p.title}
-          loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-        />
+        {isVideoMedia(p.image) ? (
+          <video
+            src={p.image}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          />
+        ) : (
+          <img
+            src={p.image}
+            alt={p.title}
+            loading="lazy"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        )}
         <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/60 transition-colors duration-500 flex items-end p-6">
           <div className="text-background opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             <span className="eyebrow text-lime">{p.hover}</span>
@@ -394,7 +640,7 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
           Nº {p.number}
         </span>
         <span className="absolute top-4 right-4 bg-lime rounded-full px-3 py-1 eyebrow text-[10px]">
-          percepção em ação
+          processo de criação
         </span>
       </div>
       <div className="p-6">
@@ -402,6 +648,6 @@ function ProjectCard({ p }: { p: (typeof projects)[number] }) {
         <h3 className="font-display text-2xl leading-tight">{p.title}</h3>
         <p className="mt-3 text-xs text-ink/55 uppercase tracking-wider">{p.category}</p>
       </div>
-    </Link>
+    </a>
   );
 }

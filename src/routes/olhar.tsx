@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import portrait from "@/assets/vitoria-portrait.jpg";
-import mood1 from "@/assets/moodboard-1.jpg";
+import olharRevista from "@/assets/olhar-revista.png";
 
 export const Route = createFileRoute("/olhar")({
   head: () => ({
@@ -53,7 +53,12 @@ function Olhar() {
             </p>
           </div>
           <div className="edito-card overflow-hidden aspect-[4/3]">
-            <img src={mood1} alt="" loading="lazy" className="w-full h-full object-cover" />
+            <img
+              src={olharRevista}
+              alt=""
+              loading="lazy"
+              className="w-full h-full object-cover object-[center_18%]"
+            />
           </div>
         </div>
       </div>

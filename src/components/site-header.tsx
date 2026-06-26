@@ -17,7 +17,6 @@ export function SiteHeader() {
       <div className="mx-auto max-w-[1400px] px-6 md:px-10 flex items-center justify-between h-16">
         <Link to="/" className="flex items-baseline gap-2">
           <span className="font-display text-xl tracking-tight">Vitória Marcondes</span>
-          <span className="hidden md:inline eyebrow text-muted-foreground">Brand · Direction</span>
         </Link>
         <nav className="hidden md:flex items-center gap-7">
           {nav.map((n) => (
