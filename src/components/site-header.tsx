@@ -23,18 +23,26 @@ export function SiteHeader() {
             <Link
               key={n.to}
               to={n.to}
-              className="text-[13px] tracking-[0.08em] uppercase text-ink/80 hover:text-ink transition-colors relative group"
-              activeProps={{ className: "text-ink" }}
+              className="text-[13px] tracking-[0.08em] uppercase text-ink/70 hover:text-ink transition-colors relative group"
+              activeProps={{ className: "!text-ink [&>span]:w-full" }}
             >
               {n.label}
-              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-lime group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-ink group-hover:w-full transition-all duration-300" />
             </Link>
           ))}
         </nav>
-        <Link to="/contato" className="hidden md:inline-flex btn-ink !py-2 !px-4 !text-[11px]">
+        <Link
+          to="/contato"
+          className="hidden md:inline-flex btn-ink !py-2 !px-4 !text-[11px] hover:!bg-background hover:!text-ink"
+        >
           Trabalhar juntos
         </Link>
-        <button className="md:hidden eyebrow" onClick={() => setOpen(!open)} aria-label="menu">
+        <button
+          className="md:hidden eyebrow"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
+        >
           {open ? "Fechar" : "Menu"}
         </button>
       </div>
@@ -42,10 +50,23 @@ export function SiteHeader() {
         <div className="md:hidden border-t border-ink/10 bg-lime">
           <nav className="flex flex-col p-6 gap-4">
             {nav.map((n) => (
-              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="font-display text-2xl">
+              <Link
+                key={n.to}
+                to={n.to}
+                onClick={() => setOpen(false)}
+                className="font-display text-2xl text-ink/80"
+                activeProps={{ className: "!text-ink italic" }}
+              >
                 {n.label}
               </Link>
             ))}
+            <Link
+              to="/contato"
+              onClick={() => setOpen(false)}
+              className="btn-ink mt-2 justify-center hover:!bg-background hover:!text-ink"
+            >
+              Trabalhar juntos
+            </Link>
           </nav>
         </div>
       )}

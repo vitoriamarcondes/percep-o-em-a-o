@@ -324,6 +324,8 @@
 
   .hero-cover-slide {
     flex: 0 0 calc(100% / 6);
+    width: calc(100% / 6);
+    min-width: 0;
     height: 100%;
     object-fit: cover;
   }
@@ -579,5 +581,63 @@
   }
   .canvas-editor *::selection {
     background: color-mix(in oklab, var(--lime) 40%, transparent);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .type-caret {
+    animation: type-blink 1s steps(1, end) infinite;
+  }
+
+  @keyframes type-blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Acessibilidade: respeita a preferência por menos movimento */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .hero-cover-track,
+    .marquee,
+    .brand-track-a,
+    .brand-track-b {
+      animation: none !important;
+    }
+
+    /* Mostra a primeira capa estática em vez do slideshow em loop */
+    .hero-cover-track {
+      transform: none !important;
+    }
+
+    /* Conteúdo de reveal sempre visível, sem deslocamento */
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 }

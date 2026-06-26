@@ -9,6 +9,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { buildSeo } from "@/lib/seo";
+import marcaValorPercebidoVideo from "@/assets/marca-valor-percebido-video.mp4";
 
 const isVideoMedia = (media: string) => media.toLowerCase().endsWith(".mp4");
 
@@ -58,14 +60,15 @@ function InstagramLinks({ value }: { value: string }) {
 }
 
 export const Route = createFileRoute("/projetos")({
-  head: () => ({
-    meta: [
-      { title: "Universos construídos — Projetos · Vitória Marcondes" },
-      { name: "description", content: "Projetos de marca, campanha, conteúdo e experiência apresentados pelo que criaram: clareza, desejo, estrutura, narrativa e presença." },
-      { property: "og:title", content: "Universos construídos — Projetos" },
-      { property: "og:description", content: "Cada projeto parte de uma pergunta: o que precisava mudar na percepção?" },
-    ],
-  }),
+  head: () =>
+    buildSeo({
+      title: "Projetos de branding, campanha e direção criativa · Vitória Marcondes",
+      description:
+        "Projetos de marca, campanha, conteúdo e experiência apresentados pelo que criaram: clareza, desejo, estrutura, narrativa e presença.",
+      path: "/projetos",
+      ogTitle: "Universos construídos — Projetos",
+      ogDescription: "Cada projeto parte de uma pergunta: o que precisava mudar na percepção?",
+    }),
   component: Projetos,
 });
 
@@ -75,7 +78,7 @@ function Projetos() {
   const [active, setActive] = useState<string | null>(() =>
     typeof window === "undefined"
       ? getSearchProjectId(location.search)
-      : getHashProjectId(window.location.hash) ?? getSearchProjectId(window.location.search),
+      : (getHashProjectId(window.location.hash) ?? getSearchProjectId(window.location.search)),
   );
   const visible = projects
     .filter((p) => filter === "Todos" || p.filters.includes(filter))
@@ -118,20 +121,56 @@ function Projetos() {
     });
   };
 
+  // Trava o scroll do fundo e permite fechar o modal com a tecla Esc
+  useEffect(() => {
+    if (!activeProject) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeProject();
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeProject]);
+
   return (
     <div>
       {/* Transition intro */}
-      <section className="bg-ink text-background">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-24 md:py-32">
+      <section className="relative overflow-hidden bg-ink text-background">
+        <video
+          src={marcaValorPercebidoVideo}
+          aria-hidden="true"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover opacity-35"
+        />
+        <div className="absolute inset-0 bg-ink/70" />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
           <p className="eyebrow text-lime">Transição editorial · 10</p>
           <h1 className="font-display text-5xl md:text-8xl mt-6 leading-[0.9] max-w-4xl">
             Os projetos aparecem pelo que <span className="italic">transformaram</span>.
           </h1>
           <div className="mt-10 max-w-2xl text-background/75 space-y-4 leading-relaxed">
-            <p>Não apresento lugares como protagonistas. Apresento raciocínios, decisões e mudanças de percepção.</p>
+            <p>
+              Não apresento lugares como protagonistas. Apresento raciocínios, decisões e mudanças
+              de percepção.
+            </p>
             <p className="font-display italic text-xl">
-              Cada projeto parte de uma pergunta:<br />
-              <span className="text-lime">"O que precisava mudar na forma como essa marca, campanha ou experiência era percebida?"</span>
+              Cada projeto parte de uma pergunta:
+              <br />
+              <span className="text-lime">
+                "O que precisava mudar na forma como essa marca, campanha ou experiência era
+                percebida?"
+              </span>
             </p>
           </div>
         </div>
@@ -147,7 +186,12 @@ function Projetos() {
           </div>
           <div className="flex flex-wrap gap-2">
             {FILTERS.map((f) => (
-              <button key={f} className="pill" data-active={filter === f} onClick={() => setFilter(f)}>
+              <button
+                key={f}
+                className="pill"
+                data-active={filter === f}
+                onClick={() => setFilter(f)}
+              >
                 {f}
               </button>
             ))}
@@ -162,7 +206,9 @@ function Projetos() {
               className={`edito-card overflow-hidden group ${i % 3 === 0 ? "md:col-span-2" : ""}`}
             >
               <div className={`grid ${i % 3 === 0 ? "md:grid-cols-2" : ""} gap-0`}>
-                <div className={`relative overflow-hidden ${i % 3 === 0 ? "aspect-[4/3] md:aspect-auto" : "aspect-[4/3]"}`}>
+                <div
+                  className={`relative overflow-hidden ${i % 3 === 0 ? "aspect-[4/3] md:aspect-auto" : "aspect-[4/3]"}`}
+                >
                   {!p.image ? (
                     <ProjectTextCover project={p} compact={i % 3 !== 0} />
                   ) : isVideoMedia(p.image) ? (
@@ -210,7 +256,10 @@ function Projetos() {
 
       {/* Modal */}
       {activeProject && (
-        <div className="fixed inset-0 z-[80] bg-ink/70 backdrop-blur-sm overflow-y-auto" onClick={closeProject}>
+        <div
+          className="fixed inset-0 z-[80] bg-ink/70 backdrop-blur-sm overflow-y-auto"
+          onClick={closeProject}
+        >
           <div
             className="min-h-full flex items-start justify-center p-4 md:p-10"
             onClick={(e) => e.stopPropagation()}
@@ -225,24 +274,38 @@ function Projetos() {
                 ) : (
                   <ProjectTextCover project={activeProject} />
                 )}
-                <button onClick={closeProject} className="absolute top-5 right-5 bg-background rounded-full w-10 h-10 flex items-center justify-center hover:bg-lime">
-                  ×
+                <button
+                  onClick={closeProject}
+                  aria-label="Fechar projeto"
+                  className="absolute top-5 right-5 z-10 bg-background text-ink rounded-full w-10 h-10 flex items-center justify-center shadow-md transition hover:bg-lime"
+                >
+                  <X className="h-5 w-5" />
                 </button>
               </div>
               <div className="p-8 md:p-12">
-                <p className="eyebrow text-editorial">{activeProject.context} · Nº {activeProject.number}</p>
-                <h3 className="font-display text-4xl md:text-5xl mt-4 leading-[1]">{activeProject.title}</h3>
-                <p className="mt-3 text-xs uppercase tracking-wider text-ink/55">{activeProject.category}</p>
+                <p className="eyebrow text-editorial">
+                  {activeProject.context} · Nº {activeProject.number}
+                </p>
+                <h3 className="font-display text-4xl md:text-5xl mt-4 leading-[1]">
+                  {activeProject.title}
+                </h3>
+                <p className="mt-3 text-xs uppercase tracking-wider text-ink/55">
+                  {activeProject.category}
+                </p>
 
                 <ProjectDetailBlocks project={activeProject} />
 
                 <div className="mt-10 flex flex-wrap gap-2">
                   {activeProject.filters.map((f) => (
-                    <span key={f} className="pill !text-[10px]">{f}</span>
+                    <span key={f} className="pill !text-[10px]">
+                      {f}
+                    </span>
                   ))}
                 </div>
 
-                <button onClick={closeProject} className="btn-ghost mt-10">← Voltar aos projetos</button>
+                <button onClick={closeProject} className="btn-ghost mt-10">
+                  ← Voltar aos projetos
+                </button>
               </div>
             </div>
           </div>
@@ -257,7 +320,8 @@ function Projetos() {
             O que fica depois da entrega.
           </h2>
           <p className="mt-6 max-w-xl text-ink/70">
-            Alguns resultados aparecem em números. Outros aparecem na forma como a marca passa a ser entendida, lembrada e desejada.
+            Alguns resultados aparecem em números. Outros aparecem na forma como a marca passa a ser
+            entendida, lembrada e desejada.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
             {[
@@ -274,7 +338,9 @@ function Projetos() {
             ))}
           </div>
           <div className="mt-12">
-            <Link to="/contato" className="btn-ink">Iniciar uma conversa →</Link>
+            <Link to="/contato" className="btn-ink">
+              Iniciar uma conversa →
+            </Link>
           </div>
         </div>
       </section>
@@ -326,9 +392,7 @@ function ProjectTextCover({
       <div className="relative py-10">
         <p className="font-display text-5xl italic leading-none md:text-7xl">{project.title}</p>
         {!compact && (
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/65">
-            {coverDescription}
-          </p>
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/65">{coverDescription}</p>
         )}
       </div>
       <p className="relative font-display text-xl italic text-editorial">{project.shift}</p>
@@ -511,10 +575,7 @@ function ProjectDetailBlocks({ project }: { project: (typeof projects)[number] }
       <div className="mt-10 space-y-8">
         <Block label="SOBRE" body={project.resume} />
         <Block label="CONCEITO" body={project.concept ?? ""} />
-        <Block
-          label="PESQUISA E INTELIGÊNCIA DE MERCADO"
-          body={project.marketResearch ?? ""}
-        />
+        <Block label="PESQUISA E INTELIGÊNCIA DE MERCADO" body={project.marketResearch ?? ""} />
         <Block label="ESTRATÉGIA" body={project.strategy ?? ""} />
         <Block label="CURADORIA DE INFLUENCIADORAS" body={project.curation ?? ""} />
         <Block label="PLANEJAMENTO EDITORIAL" body={project.editorialPlanning ?? ""} />
@@ -596,9 +657,7 @@ function ProjectDetailBlocks({ project }: { project: (typeof projects)[number] }
       {project.servedBrands && (
         <div>
           <p className="eyebrow text-editorial mb-3">Marcas atendidas</p>
-          <p className="whitespace-pre-line text-ink/80 leading-relaxed">
-            {project.servedBrands}
-          </p>
+          <p className="whitespace-pre-line text-ink/80 leading-relaxed">{project.servedBrands}</p>
           {project.servedBrandsInstagram && (
             <InstagramLinks value={project.servedBrandsInstagram} />
           )}
@@ -655,7 +714,15 @@ function Note({ body }: { body: string }) {
   );
 }
 
-function Block({ label, body, accent }: { label: string; body: string | string[]; accent?: boolean }) {
+function Block({
+  label,
+  body,
+  accent,
+}: {
+  label: string;
+  body: string | string[];
+  accent?: boolean;
+}) {
   return (
     <div className={`${accent ? "bg-mist/40 rounded-2xl p-6" : ""}`}>
       <p className="eyebrow text-editorial mb-3">{label}</p>
@@ -669,7 +736,15 @@ function Block({ label, body, accent }: { label: string; body: string | string[]
           ))}
         </ul>
       ) : (
-        <p className={accent ? "whitespace-pre-line font-display text-xl italic leading-snug md:text-2xl" : "whitespace-pre-line text-ink/80 leading-relaxed"}>{renderFormattedText(body)}</p>
+        <p
+          className={
+            accent
+              ? "whitespace-pre-line font-display text-xl italic leading-snug md:text-2xl"
+              : "whitespace-pre-line text-ink/80 leading-relaxed"
+          }
+        >
+          {renderFormattedText(body)}
+        </p>
       )}
     </div>
   );

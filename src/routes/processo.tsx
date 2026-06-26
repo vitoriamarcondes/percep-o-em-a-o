@@ -1,15 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import mood2 from "@/assets/moodboard-2.jpg";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/processo")({
-  head: () => ({
-    meta: [
-      { title: "Processo vivo — Vitória Marcondes" },
-      { name: "description", content: "Como eu penso antes de criar. Pesquisa, escuta, observação, referências, tensão, intenção e linguagem." },
-      { property: "og:title", content: "Processo vivo — Vitória Marcondes" },
-      { property: "og:description", content: "O que parece intuitivo quase sempre foi profundamente observado." },
-    ],
-  }),
+  head: () =>
+    buildSeo({
+      title: "Processo de branding e direção criativa · Vitória Marcondes",
+      description:
+        "Como eu penso antes de criar. Pesquisa, escuta, observação, referências, tensão, intenção e linguagem para marcas com presença.",
+      path: "/processo",
+      ogTitle: "Processo vivo — Vitória Marcondes",
+      ogDescription: "O que parece intuitivo quase sempre foi profundamente observado.",
+    }),
   component: Processo,
 });
 
@@ -34,9 +36,18 @@ function Processo() {
         </h1>
         <div className="grid lg:grid-cols-12 gap-12 mt-12">
           <div className="lg:col-span-7 space-y-5 text-ink/80 leading-relaxed">
-            <p>Meu processo não começa abrindo um arquivo de design. Começa entendendo o que precisa ser percebido.</p>
-            <p>Eu leio o contexto. Escuto o público. Observo repertórios. Organizo referências. Busco tensão. Defino intenção. Crio linguagem.</p>
-            <p>Depois disso, a estética deixa de ser decoração. Ela vira <span className="lime-underline">estratégia visível</span>.</p>
+            <p>
+              Meu processo não começa abrindo um arquivo de design. Começa entendendo o que precisa
+              ser percebido.
+            </p>
+            <p>
+              Eu leio o contexto. Escuto o público. Observo repertórios. Organizo referências. Busco
+              tensão. Defino intenção. Crio linguagem.
+            </p>
+            <p>
+              Depois disso, a estética deixa de ser decoração. Ela vira{" "}
+              <span className="lime-underline">estratégia visível</span>.
+            </p>
             <p className="font-display text-2xl italic mt-8">
               O que parece intuitivo quase sempre foi profundamente observado.
             </p>
@@ -52,10 +63,15 @@ function Processo() {
       <section className="mx-auto max-w-[1400px] px-6 md:px-10 pb-24">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
           {blocks.map((b, i) => (
-            <div key={b.t} className="edito-card p-6 group hover:bg-lime transition-colors duration-300">
+            <div
+              key={b.t}
+              className="edito-card p-6 group hover:bg-lime transition-colors duration-300"
+            >
               <span className="eyebrow text-editorial group-hover:text-ink">0{i + 1}</span>
               <h3 className="font-display text-2xl mt-6">{b.t}</h3>
-              <p className="mt-3 text-sm text-ink/70 group-hover:text-ink/90 leading-relaxed">{b.d}</p>
+              <p className="mt-3 text-sm text-ink/70 group-hover:text-ink/90 leading-relaxed">
+                {b.d}
+              </p>
             </div>
           ))}
         </div>
@@ -65,15 +81,27 @@ function Processo() {
         <div className="mx-auto max-w-3xl px-6 md:px-10 py-24 text-center">
           <p className="eyebrow text-editorial">14 · Marcas com propósito</p>
           <h2 className="font-display text-4xl md:text-6xl mt-4 leading-[1]">
-            Propósito não é discurso. É <span className="italic">comportamento</span> traduzido em linguagem.
+            Propósito não é discurso. É <span className="italic">comportamento</span> traduzido em
+            linguagem.
           </h2>
           <div className="mt-10 space-y-5 text-ink/80 leading-relaxed">
-            <p>Trabalho com marcas que têm algo real para sustentar: uma causa, uma visão, uma mudança de percepção ou um jeito mais consciente de existir no mercado.</p>
-            <p>Propósito precisa aparecer no tom, na imagem, na campanha, na experiência, na forma de se relacionar.</p>
-            <p className="font-display text-2xl italic">Uma marca com propósito não precisa parecer perfeita. Precisa parecer <span className="lime-underline not-italic">inteira</span>.</p>
+            <p>
+              Trabalho com marcas que têm algo real para sustentar: uma causa, uma visão, uma
+              mudança de percepção ou um jeito mais consciente de existir no mercado.
+            </p>
+            <p>
+              Propósito precisa aparecer no tom, na imagem, na campanha, na experiência, na forma de
+              se relacionar.
+            </p>
+            <p className="font-display text-2xl italic">
+              Uma marca com propósito não precisa parecer perfeita. Precisa parecer{" "}
+              <span className="lime-underline not-italic">inteira</span>.
+            </p>
           </div>
           <div className="mt-12">
-            <Link to="/contato" className="btn-ink">Trabalhar comigo →</Link>
+            <Link to="/contato" className="btn-ink">
+              Trabalhar comigo →
+            </Link>
           </div>
         </div>
       </section>
