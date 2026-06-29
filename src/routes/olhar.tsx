@@ -1,31 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import portrait from "@/assets/vitoria-portrait.jpg";
-import olharRevista from "@/assets/olhar-revista.png";
-import heroEditorial from "@/assets/hero-editorial.jpg";
-import heroCoverCollageBw from "@/assets/hero-cover-collage-bw.jpeg";
-import heroCoverWall from "@/assets/hero-cover-wall.png";
-import marcaValorPercebido from "@/assets/marca-valor-percebido.jpeg";
-import heroCoverMagazine from "@/assets/hero-cover-magazine.png";
+import moodboardSite from "@/assets/moodboard-site.png";
 import { buildSeo } from "@/lib/seo";
-
-const mosaicImages = [
-  { src: heroCoverMagazine, alt: "Revista aberta com referências de moda" },
-  { src: heroEditorial, alt: "Retrato editorial" },
-  { src: heroCoverCollageBw, alt: "Pesquisa visual em preto e branco" },
-  { src: heroCoverWall, alt: "Painel de referências visuais" },
-  { src: marcaValorPercebido, alt: "Processo criativo no tablet" },
-  { src: olharRevista, alt: "Revista editorial sobre a mesa" },
-];
-
-// Spans que ladrilham um bloco 4×3 no desktop (focal 2×2, uma vertical, duas faixas largas).
-const mosaicSpans = [
-  "sm:col-span-2 sm:row-span-2",
-  "",
-  "sm:row-span-2",
-  "",
-  "sm:col-span-2",
-  "sm:col-span-2",
-];
 
 export const Route = createFileRoute("/olhar")({
   head: () =>
@@ -46,37 +22,50 @@ function Olhar() {
     <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-16 md:py-24">
       <div className="grid lg:grid-cols-12 gap-12 items-start">
         <div className="lg:col-span-7">
-          <p className="eyebrow text-editorial">O Olhar · Tese editorial</p>
-          <h1 className="font-display text-5xl md:text-8xl mt-4 leading-[0.9]">
-            Meu olhar começa <span className="italic">antes</span> da imagem.
+          <p className="eyebrow text-editorial">Sobre mim · Tese editorial</p>
+          <h1 className="font-display text-5xl md:text-7xl mt-4 leading-[0.9]">
+            Toda marca é uma forma de{" "}
+            <span className="lime-underline italic">enxergar o mundo</span>.
           </h1>
           <div className="mt-12 max-w-xl text-ink/80 leading-relaxed space-y-5 text-base">
             <p>
-              Sou Vitória Marcondes. Trabalho com estratégia de marca, direção criativa e
-              comunicação para transformar intenção em linguagem.
+              Sou Vitória Marcondes, estrategista de marca e diretora criativa. Desenvolvo projetos
+              na interseção entre Brand Strategy, Direção Criativa e Comunicação, conectando
+              pesquisa, comportamento, mercado e expressão para construir marcas mais relevantes.
             </p>
             <p>
-              Antes de criar, eu leio contexto, público, mercado, comportamento e percepção. Depois,
-              traduzo isso em imagem, palavra, campanha, conteúdo, experiência e presença.
+              Não separo estratégia de criação. Pesquisa, posicionamento, direção criativa e
+              comunicação fazem parte do mesmo processo. É dessa integração que surgem marcas mais
+              consistentes, campanhas mais relevantes e experiências que permanecem na memória.
             </p>
             <p>
-              Não penso marcas como peças soltas. Penso como sistemas de percepção: com voz, imagem,
-              ritmo, atmosfera, símbolos, desejo e memória.
+              Ao longo da minha trajetória, atuei em projetos de branding, campanhas institucionais,
+              comunicação pública, marketing, ESG e iniciativas de impacto social. Transitar por
+              diferentes mercados ampliou meu repertório e fortaleceu uma forma de trabalhar que
+              combina investigação estratégica, sensibilidade criativa e visão de negócio.
+            </p>
+            <p>
+              Hoje desenvolvo sistemas de marca capazes de orientar identidade, campanhas, conteúdo,
+              experiências e relacionamento, considerando o contexto cultural, os objetivos do
+              negócio e as pessoas que fazem parte dessa construção.
             </p>
           </div>
           <p className="mt-12 font-display text-3xl md:text-4xl italic max-w-xl leading-snug">
-            O que parece estética, para mim, começa como{" "}
-            <span className="lime-underline not-italic">leitura</span>.
+            Direção criativa orientada por{" "}
+            <span className="lime-underline not-italic">
+              estratégia, comportamento, cultura e mercado
+            </span>
+            .
           </p>
 
           <div className="mt-14 flex flex-wrap gap-2.5">
             {[
-              "visual code",
-              "brand feeling",
-              "perception shift",
-              "tone direction",
-              "atmosphere",
-              "from insight to atmosphere",
+              "Brand Strategy",
+              "Creative Direction",
+              "Consumer Insights",
+              "Brand Positioning",
+              "Market Intelligence",
+              "Brand Experience",
             ].map((t) => (
               <span key={t} className="pill !text-[10px] !py-2">
                 {t}
@@ -86,17 +75,13 @@ function Olhar() {
 
           <div className="mt-12">
             <p className="eyebrow text-editorial mb-4">Mosaico · referências em movimento</p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 auto-rows-[110px] sm:auto-rows-[150px] gap-2 grid-flow-dense">
-              {mosaicImages.map((m, i) => (
-                <div key={m.src} className={`overflow-hidden rounded-xl ${mosaicSpans[i]}`}>
-                  <img
-                    src={m.src}
-                    alt={m.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
-              ))}
+            <div className="overflow-hidden rounded-xl bg-mist/40 ring-1 ring-ink/10 shadow-sm">
+              <img
+                src={moodboardSite}
+                alt="Moodboard editorial com referências visuais em cores e preto e branco"
+                loading="lazy"
+                className="block h-auto w-full"
+              />
             </div>
           </div>
         </div>
@@ -111,7 +96,7 @@ function Olhar() {
           <div className="edito-card p-6 bg-mist/40">
             <p className="eyebrow text-editorial mb-3">Repertório</p>
             <p className="font-display text-xl italic leading-snug">
-              Atravessar mercados diferentes me ensinou a ler pessoas antes de criar para marcas.
+              Toda decisão criativa parte da compreensão das pessoas, do contexto e das dinâmicas do mercado.
             </p>
           </div>
         </div>

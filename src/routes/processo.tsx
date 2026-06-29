@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import mood2 from "@/assets/moodboard-2.jpg";
+import processoMoodboard from "@/assets/processo-moodboard.jpeg";
 import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/processo")({
@@ -54,7 +54,12 @@ function Processo() {
           </div>
           <div className="lg:col-span-5">
             <div className="edito-card overflow-hidden aspect-[4/5]">
-              <img src={mood2} alt="" loading="lazy" className="w-full h-full object-cover" />
+              <img
+                src={processoMoodboard}
+                alt="Vitória organizando referências em um moodboard visual"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
