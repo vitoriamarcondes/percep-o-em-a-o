@@ -33,7 +33,7 @@ export function SiteFooter() {
             <div className="space-y-3">
               <p className="eyebrow text-background/50">Navegar</p>
               <Link to="/olhar" className="block hover:text-lime transition-colors">
-                Olhar
+                Sobre
               </Link>
               <Link to="/metodo" className="block hover:text-lime transition-colors">
                 Método

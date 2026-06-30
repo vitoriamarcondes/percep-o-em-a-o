@@ -155,7 +155,7 @@ function Projetos() {
         />
         <div className="absolute inset-0 bg-ink/70" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-          <p className="eyebrow text-lime">Transição editorial · 10</p>
+          <p className="eyebrow text-lime">Projetos · 10</p>
           <h1 className="font-display text-5xl md:text-8xl mt-6 leading-[0.9] max-w-4xl">
             Os projetos aparecem pelo que <span className="italic">transformaram</span>.
           </h1>
@@ -179,7 +179,7 @@ function Projetos() {
       <section id="filtrar-territorio" className="mx-auto max-w-[1400px] px-6 md:px-10 py-16">
         <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
           <div>
-            <p className="eyebrow text-editorial">11 · Universos construídos</p>
+            <p className="eyebrow text-editorial">11 · Projetos &amp; Direções</p>
             <h2 className="font-display text-4xl md:text-5xl mt-3">
               Explorar por universo criativo
             </h2>

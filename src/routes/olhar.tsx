@@ -23,40 +23,79 @@ function Olhar() {
       <div className="grid lg:grid-cols-12 gap-12 items-start">
         <div className="lg:col-span-7">
           <p className="eyebrow text-editorial">Sobre mim · Tese editorial</p>
-          <h1 className="font-display text-5xl md:text-7xl mt-4 leading-[0.9]">
+          <h1 className="font-display text-5xl md:text-[4rem] mt-4 leading-[0.9]">
             Toda marca é uma forma de{" "}
             <span className="lime-underline italic">enxergar o mundo</span>.
           </h1>
           <div className="mt-12 max-w-xl text-ink/80 leading-relaxed space-y-5 text-base">
             <p>
-              Sou Vitória Marcondes, estrategista de marca e diretora criativa. Desenvolvo projetos
-              na interseção entre Brand Strategy, Direção Criativa e Comunicação, conectando
-              pesquisa, comportamento, mercado e expressão para construir marcas mais relevantes.
+              <strong className="font-semibold">
+                Sou Vitória Marcondes, estrategista de marca e diretora criativa.
+              </strong>{" "}
+              Desenvolvo projetos na interseção entre{" "}
+              <strong className="font-semibold">
+                Brand Strategy, Direção Criativa e Comunicação
+              </strong>
+              , conectando{" "}
+              <strong className="font-semibold">
+                pesquisa, comportamento, mercado e expressão
+              </strong>{" "}
+              para construir marcas mais relevantes.
             </p>
             <p>
-              Não separo estratégia de criação. Pesquisa, posicionamento, direção criativa e
-              comunicação fazem parte do mesmo processo. É dessa integração que surgem marcas mais
-              consistentes, campanhas mais relevantes e experiências que permanecem na memória.
+              Não separo estratégia de criação.{" "}
+              <strong className="font-semibold">
+                Pesquisa, posicionamento, direção criativa e comunicação
+              </strong>{" "}
+              fazem parte do mesmo processo. É dessa integração que surgem marcas mais consistentes,
+              campanhas mais relevantes e experiências que permanecem na memória.
             </p>
             <p>
-              Ao longo da minha trajetória, atuei em projetos de branding, campanhas institucionais,
-              comunicação pública, marketing, ESG e iniciativas de impacto social. Transitar por
-              diferentes mercados ampliou meu repertório e fortaleceu uma forma de trabalhar que
-              combina investigação estratégica, sensibilidade criativa e visão de negócio.
+              Ao longo da minha trajetória, atuei em projetos de{" "}
+              <strong className="font-semibold">
+                branding, campanhas institucionais, comunicação pública, marketing, ESG e
+                iniciativas de impacto social
+              </strong>
+              . Transitar por diferentes mercados ampliou meu repertório e desenvolveu minha forma
+              de trabalhar que combina{" "}
+              <strong className="font-semibold">
+                investigação estratégica, sensibilidade criativa e visão de negócio
+              </strong>
+              .
             </p>
             <p>
-              Hoje desenvolvo sistemas de marca capazes de orientar identidade, campanhas, conteúdo,
-              experiências e relacionamento, considerando o contexto cultural, os objetivos do
-              negócio e as pessoas que fazem parte dessa construção.
+              Hoje desenvolvo <strong className="font-semibold">sistemas de marca</strong> capazes
+              de orientar{" "}
+              <strong className="font-semibold">
+                identidade, campanhas, conteúdo, experiências e relacionamento
+              </strong>
+              , considerando o contexto cultural, os objetivos do negócio e as pessoas que fazem
+              parte desse conjunto.
             </p>
           </div>
-          <p className="mt-12 font-display text-3xl md:text-4xl italic max-w-xl leading-snug">
-            Direção criativa orientada por{" "}
-            <span className="lime-underline not-italic">
-              estratégia, comportamento, cultura e mercado
+          <a
+            href="/vitoria-marcondes-curriculo.pdf"
+            download
+            className="edito-card group mt-8 flex max-w-lg items-center justify-between gap-6 bg-mist/40 p-5 text-ink transition-colors duration-300 hover:bg-lime md:p-6"
+          >
+            <span>
+              <span className="eyebrow text-editorial group-hover:text-ink">Currículo</span>
+              <span className="mt-2 block font-display text-2xl italic leading-tight">
+                Baixar currículo completo
+              </span>
             </span>
-            .
-          </p>
+            <span className="shrink-0 text-3xl leading-none transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+          <div className="edito-card mt-12 max-w-lg bg-ink p-5 text-background md:p-6">
+            <p className="eyebrow text-lime">Tese de atuação</p>
+            <p className="mt-3 font-display text-2xl md:text-3xl italic leading-snug">
+              Direção criativa orientada por{" "}
+              <span className="not-italic text-lime">estratégia, comportamento, cultura e mercado</span>
+              .
+            </p>
+          </div>
 
           <div className="mt-14 flex flex-wrap gap-2.5">
             {[
@@ -90,13 +129,14 @@ function Olhar() {
           <div className="edito-card aspect-[4/5] relative">
             <img src={portrait} alt="Vitória Marcondes" className="w-full h-full object-cover" />
             <span className="absolute bottom-5 left-5 bg-background/90 backdrop-blur rounded-full px-3 py-1 eyebrow text-[10px]">
-              Vitória Marcondes · São Paulo
+              Vitória Marcondes
             </span>
           </div>
           <div className="edito-card p-6 bg-mist/40">
             <p className="eyebrow text-editorial mb-3">Repertório</p>
             <p className="font-display text-xl italic leading-snug">
-              Toda decisão criativa parte da compreensão das pessoas, do contexto e das dinâmicas do mercado.
+              Toda decisão criativa parte da compreensão das pessoas, do contexto e das referências
+              que influenciam seu público.
             </p>
           </div>
         </div>

@@ -152,9 +152,9 @@ function Home() {
 
           <div className="grid gap-12 xl:grid-cols-[minmax(0,1.6fr)_minmax(400px,0.9fr)] xl:gap-12 items-start">
             <div className="relative z-20 min-w-0 xl:pr-4">
-              <h1 className="font-display text-[3.25rem] sm:text-[4.6rem] xl:text-[5.9rem] 2xl:text-[6.75rem] leading-[0.98] tracking-[0] text-balance">
+              <h1 className="font-display text-[3.15rem] sm:text-[4.45rem] xl:text-[5.55rem] 2xl:text-[6.35rem] leading-[0.98] tracking-[0] text-balance">
                 <span className="block">Faça sua marca</span>
-                <span className="block">
+                <span className="block whitespace-nowrap">
                   ganhar voz, <span className="italic font-light">desejo</span>
                 </span>
                 <span className="block">
@@ -166,7 +166,7 @@ function Home() {
                 imagem, propósito e expressão.
               </p>
               <p className="mt-6 max-w-xl text-base text-ink/55 italic font-display">
-                "Marcas se tornam referências pela combinação entre arte, estratégia e propósito."
+                "Marcas se tornam referências pela combinação entre arte, estratégia e posicionamento."
               </p>
               <div className="mt-10 flex flex-wrap gap-3">
                 <Link to="/projetos" className="btn-ink">
@@ -348,7 +348,7 @@ function Home() {
       <Reveal as="section" className="mx-auto max-w-[1400px] px-6 md:px-10 py-24">
         <p className="eyebrow text-editorial">04 · Posicionamento</p>
         <h2 className="font-display text-4xl md:text-6xl mt-3 max-w-3xl leading-[1]">
-          Não vendo estética. Construo{" "}
+          Transformo estratégia em{" "}
           <span className="lime-underline italic">valor percebido</span>.
         </h2>
         <p className="mt-8 max-w-2xl text-ink/75 leading-relaxed">

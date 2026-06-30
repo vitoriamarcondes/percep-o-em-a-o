@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import heroCoverMagazine from "@/assets/hero-cover-magazine.png";
+import heroCoverWall from "@/assets/hero-cover-wall.png";
+import moodboardSite from "@/assets/moodboard-site.png";
+import processoMoodboard from "@/assets/processo-moodboard.jpeg";
 import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/metodo")({
@@ -161,8 +165,29 @@ const builds = [
   },
 ];
 
+const editorialFrames = [
+  {
+    n: "01",
+    title: "Contexto",
+    src: moodboardSite,
+    alt: "Moodboard editorial com referências visuais",
+  },
+  {
+    n: "02",
+    title: "Direção",
+    src: processoMoodboard,
+    alt: "Mesa de processo criativo com referências",
+  },
+  {
+    n: "03",
+    title: "Expressão",
+    src: heroCoverWall,
+    alt: "Painel de referências visuais",
+  },
+];
+
 function Metodo() {
-  const [open, setOpen] = useState<string>("01");
+  const [open, setOpen] = useState<string | null>(null);
 
   return (
     <div>
@@ -172,10 +197,13 @@ function Metodo() {
           Construção de sistemas de marca em <span className="italic lime-underline">cinco etapas</span>.
         </h1>
         <p className="mt-8 max-w-2xl text-ink/75 text-lg leading-relaxed">
-          Cada projeto nasce de uma investigação estratégica e evolui para um sistema capaz de
-          orientar identidade, comunicação, campanhas e experiência de marca. O objetivo não é
-          apenas criar uma boa imagem, mas construir uma presença consistente e relevante ao longo
-          do tempo.
+          Cada projeto nasce de uma{" "}
+          <strong className="font-semibold">investigação estratégica</strong> e evolui para um
+          sistema capaz de orientar <strong className="font-semibold">identidade</strong>,{" "}
+          <strong className="font-semibold">comunicação</strong>,{" "}
+          <strong className="font-semibold">campanhas</strong> e{" "}
+          <strong className="font-semibold">experiência de marca</strong>. O objetivo não é apenas
+          criar uma boa imagem, mas construir uma presença consistente e relevante ao longo do tempo.
         </p>
       </section>
 
@@ -187,15 +215,15 @@ function Metodo() {
             return (
               <button
                 key={s.n}
-                onClick={() => setOpen(s.n)}
-                className={`edito-card w-full text-left p-6 md:p-8 transition-all duration-500 ${
-                  isOpen ? "bg-ink text-background" : "hover:border-lime"
+                onClick={() => setOpen(isOpen ? null : s.n)}
+                className={`edito-card group w-full text-left p-6 md:p-8 transition-all duration-500 ${
+                  isOpen ? "bg-ink text-background" : "hover:bg-ink hover:text-background"
                 }`}
               >
                 <div className="flex items-start gap-6 md:gap-12">
                   <span
                     className={`font-display text-5xl md:text-7xl leading-none ${
-                      isOpen ? "text-lime" : "text-editorial"
+                      isOpen ? "text-lime" : "text-editorial group-hover:text-lime"
                     }`}
                   >
                     {s.n}
@@ -204,7 +232,7 @@ function Metodo() {
                     <h3 className="font-display text-3xl md:text-5xl">{s.title}</h3>
                     <p
                       className={`mt-3 text-base md:text-lg ${
-                        isOpen ? "text-background/80" : "text-ink/75"
+                        isOpen ? "text-background/80" : "text-ink/75 group-hover:text-background/80"
                       }`}
                     >
                       {s.n === "02" ? (
@@ -400,13 +428,97 @@ function Metodo() {
                       </div>
                     )}
                   </div>
-                  <span className={`text-2xl ${isOpen ? "text-lime" : "text-ink/40"}`}>
-                    {isOpen ? "—" : "+"}
+                  <span
+                    className={`flex shrink-0 items-center gap-2 pt-1 text-xs uppercase tracking-[0.18em] ${
+                      isOpen ? "text-lime" : "text-ink/55 group-hover:text-lime"
+                    }`}
+                  >
+                    <span>{isOpen ? "Fechar" : "Leia mais"}</span>
+                    <span className="text-2xl leading-none">{isOpen ? "—" : "+"}</span>
                   </span>
                 </div>
               </button>
             );
           })}
+        </div>
+      </section>
+
+      <section className="bg-ink py-8 md:py-14">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+          <div className="overflow-hidden border border-ink/15 bg-background shadow-2xl">
+            <div className="relative aspect-[4/3] overflow-hidden border-b border-ink/15 md:aspect-[16/7]">
+              <img
+                src={heroCoverMagazine}
+                alt="Composição editorial para sistema de marca"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-ink/20" />
+              <div className="absolute inset-x-6 top-5 flex items-center justify-between text-background md:inset-x-8">
+                <span className="eyebrow text-[10px]">Sistema visual</span>
+                <span className="eyebrow text-[10px]">Método · 05 etapas</span>
+              </div>
+              <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 text-center text-background md:inset-x-10">
+                <p className="font-display text-5xl leading-[0.82] md:text-8xl">
+                  marca em
+                  <span className="block italic text-lime">movimento</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="border-b border-ink/15 px-6 py-12 text-center md:px-16 md:py-16">
+              <p className="mx-auto max-w-3xl font-display text-3xl leading-tight md:text-5xl">
+                Um sistema de marca organiza estratégia, imagem e presença para que cada ponto de
+                contato pareça parte do mesmo universo.
+              </p>
+            </div>
+
+            <div className="grid border-ink/15 md:grid-cols-[0.9fr_0.95fr_0.9fr_0.9fr]">
+              <div className="relative min-h-[360px] overflow-hidden border-b border-ink/15 md:border-b-0 md:border-r">
+                <img
+                  src={editorialFrames[0].src}
+                  alt={editorialFrames[0].alt}
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+                <span className="absolute bottom-5 left-5 font-display text-4xl text-background">
+                  {editorialFrames[0].n}
+                </span>
+              </div>
+
+              <div className="flex min-h-[360px] flex-col justify-center border-b border-ink/15 px-7 py-10 md:border-b-0 md:border-r">
+                <p className="eyebrow text-editorial">Do conceito à aplicação</p>
+                <h2 className="mt-5 font-display text-4xl leading-[0.95]">
+                  Direção que vira sistema.
+                </h2>
+                <p className="mt-6 text-sm leading-relaxed text-ink/65">
+                  A construção combina leitura de contexto, arquitetura de marca, identidade,
+                  campanha e experiência para sustentar uma presença reconhecível.
+                </p>
+                <Link
+                  to="/contato"
+                  className="mt-8 w-fit text-xs uppercase tracking-[0.18em] underline underline-offset-4"
+                >
+                  Conversar sobre projeto
+                </Link>
+              </div>
+
+              {editorialFrames.slice(1).map((frame) => (
+                <div
+                  key={frame.n}
+                  className="relative min-h-[360px] overflow-hidden border-b border-ink/15 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0"
+                >
+                  <img
+                    src={frame.src}
+                    alt={frame.alt}
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-ink/5" />
+                  <span className="absolute bottom-5 left-5 font-display text-4xl text-background">
+                    {frame.n}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
