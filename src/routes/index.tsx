@@ -373,32 +373,59 @@ function Home() {
             {
               n: "I ✦",
               t: "Identidade",
-              d: "Construir uma linguagem própria para cada marca.",
+              d: (
+                <>
+                  Construir uma <strong className="font-semibold">linguagem própria</strong> para
+                  cada marca.
+                </>
+              ),
             },
             {
               n: "II ✦",
               t: "Cultura",
-              d: "Conectar comportamento, repertório e contexto de mercado.",
+              d: (
+                <>
+                  Conectar <strong className="font-semibold">comportamento</strong>,{" "}
+                  <strong className="font-semibold">repertório</strong> e{" "}
+                  <strong className="font-semibold">contexto</strong> de{" "}
+                  <strong className="font-semibold">mercado</strong>.
+                </>
+              ),
             },
             {
               n: "III ✦",
               t: "Desejo",
-              d: "Criar narrativas que aumentem valor percebido e identificação.",
+              d: (
+                <>
+                  Criar narrativas que aumentem{" "}
+                  <strong className="font-semibold">valor percebido</strong> e{" "}
+                  <strong className="font-semibold">identificação</strong>.
+                </>
+              ),
             },
             {
               n: "IV ✦",
               t: "Presença",
-              d: "Desenvolver marcas capazes de ocupar um lugar próprio na memória e no mercado.",
+              d: (
+                <>
+                  Desenvolver marcas capazes de ocupar um{" "}
+                  <strong className="font-semibold">lugar próprio</strong> na{" "}
+                  <strong className="font-semibold">memória</strong> e no{" "}
+                  <strong className="font-semibold">mercado</strong>.
+                </>
+              ),
             },
           ].map((c) => (
             <div
               key={c.t}
-              className="edito-card p-7 group hover:bg-ink hover:text-background transition-colors duration-500"
+              className="edito-card border-ink/20 bg-lime/55 p-7 shadow-[0_18px_45px_rgba(17,16,14,0.08)] group hover:bg-ink hover:text-background transition-colors duration-500"
             >
-              <h3 className="font-display text-3xl leading-none">
+              <h3 className="font-display text-2xl leading-none md:text-[1.65rem]">
                 <span className="text-editorial group-hover:text-lime">{c.n}</span> {c.t}
               </h3>
-              <p className="mt-3 text-sm opacity-70 leading-relaxed">{c.d}</p>
+              <p className="mt-4 text-sm leading-relaxed text-ink/70 group-hover:text-background/80">
+                {c.d}
+              </p>
             </div>
           ))}
         </div>
@@ -421,6 +448,8 @@ function Home() {
                   suffix: "+",
                   l: "anos",
                   d: "atuando entre comunicação, campanhas, conteúdo, direção visual e estratégia.",
+                  href: "/olhar",
+                  cta: "Sobre mim →",
                 },
                 {
                   n: "3×",
@@ -428,6 +457,8 @@ function Home() {
                   suffix: "×",
                   l: "mais carteira atendida",
                   d: "em experiência comercial com relacionamento, capacitação e adaptação de linguagem.",
+                  href: "/projetos?project=produto-imaginario",
+                  cta: "Ver case Ambev →",
                 },
                 {
                   n: "400+",
@@ -435,6 +466,8 @@ function Home() {
                   suffix: "+",
                   l: "pessoas",
                   d: "em experiência criada e produzida com ingressos esgotados.",
+                  href: "/projetos?project=truvarao",
+                  cta: "Ver evento →",
                 },
                 {
                   n: "03",
@@ -466,25 +499,41 @@ function Home() {
                   pad: 2,
                   l: "setores",
                   d: "moda, lifestyle, previdência, setor público, comercial, institucional, social e marcas com propósito.",
+                  href: "/projetos",
+                  cta: "Ver todos os projetos →",
                 },
                 {
                   n: "∞",
                   l: "leituras",
                   d: "atravessar mercados diferentes me ensinou a ler pessoas antes de criar para marcas.",
+                  href: "/processo",
+                  cta: "Conhecer meu processo →",
                 },
               ].map((s, i) => {
                 const hasRecognitions = "recognitions" in s;
                 return (
                   <div
                     key={i}
-                    className={`group relative bg-ink p-8 md:p-10 ${hasRecognitions ? "cursor-help outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-inset" : ""}`}
+                    className={`group relative bg-ink p-8 md:p-10 ${hasRecognitions ? "overflow-hidden outline-none transition-colors duration-500 hover:bg-[#15120f] focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-inset" : ""} ${"href" in s ? "cursor-pointer outline-none transition-colors duration-500 hover:bg-[#15120f] focus-within:bg-[#15120f] focus-within:ring-2 focus-within:ring-lime focus-within:ring-inset" : ""}`}
                     {...(hasRecognitions ? { tabIndex: 0 } : {})}
                   >
+                    {"href" in s && (
+                      <a
+                        href={s.href}
+                        aria-label={s.cta}
+                        className="absolute inset-0 z-10"
+                      />
+                    )}
                     <AnimatedStatNumber stat={s} active={statsActive} />
                     <div className="eyebrow mt-3 text-background/60">{s.l}</div>
                     <p className="mt-4 text-sm text-background/80 leading-relaxed">{s.d}</p>
+                    {"cta" in s && (
+                      <span className="relative z-20 mt-5 inline-flex items-center gap-2 rounded-full border border-lime/35 px-3 py-2 eyebrow text-[10px] text-lime transition-colors group-hover:bg-lime group-hover:text-ink group-focus-within:bg-lime group-focus-within:text-ink">
+                        {s.cta}
+                      </span>
+                    )}
                     {hasRecognitions && (
-                      <span className="mt-4 inline-flex items-center gap-1.5 eyebrow text-[10px] text-lime">
+                      <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-lime/35 px-3 py-2 eyebrow text-[10px] text-lime transition-colors group-hover:bg-lime group-hover:text-ink group-focus-within:bg-lime group-focus-within:text-ink">
                         Ver reconhecimentos
                         <span
                           aria-hidden
@@ -495,15 +544,17 @@ function Home() {
                       </span>
                     )}
                     {"recognitions" in s && (
-                      <div className="absolute left-0 top-full z-30 hidden w-[min(760px,calc(100vw-3rem))] gap-3 rounded-[1.5rem] border border-ink/10 bg-background p-3 text-ink shadow-2xl group-hover:grid group-focus-within:grid md:grid-cols-3">
+                      <div className="grid max-h-0 gap-3 overflow-hidden opacity-0 transition-all duration-500 ease-out group-hover:mt-6 group-hover:max-h-[820px] group-hover:opacity-100 group-focus-within:mt-6 group-focus-within:max-h-[820px] group-focus-within:opacity-100">
                         {s.recognitions.map((item) => (
                           <div
                             key={item.n}
-                            className="rounded-[1.1rem] border border-ink/10 bg-paper/50 p-5"
+                            className="rounded-[0.65rem] border border-lime/25 bg-background/[0.07] p-4 text-background shadow-[0_14px_40px_rgba(0,0,0,0.16)] backdrop-blur"
                           >
-                            <p className="eyebrow text-editorial">{item.n}</p>
-                            <h3 className="mt-3 font-display text-xl leading-tight">{item.t}</h3>
-                            <p className="mt-3 text-xs leading-relaxed text-ink/70">{item.d}</p>
+                            <p className="eyebrow text-lime">{item.n}</p>
+                            <h3 className="mt-2 font-display text-base leading-tight">{item.t}</h3>
+                            <p className="mt-2 text-xs leading-relaxed text-background/70">
+                              {item.d}
+                            </p>
                           </div>
                         ))}
                       </div>
