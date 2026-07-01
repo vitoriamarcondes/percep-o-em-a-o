@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import processoManifestoMoodboard from "@/assets/processo-manifesto-moodboard.jpeg";
 import processoMoodboard from "@/assets/processo-moodboard.jpeg";
 import { buildSeo } from "@/lib/seo";
 
@@ -138,6 +139,15 @@ function Processo() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="bg-ink">
+        <img
+          src={processoManifestoMoodboard}
+          alt="Moodboard visual em preto e branco no processo criativo"
+          loading="lazy"
+          className="h-[360px] w-full object-cover md:h-[520px] xl:h-[620px]"
+        />
       </section>
     </div>
   );

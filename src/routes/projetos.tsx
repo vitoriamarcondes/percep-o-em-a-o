@@ -67,7 +67,8 @@ export const Route = createFileRoute("/projetos")({
         "Projetos de marca, campanha, conteúdo e experiência apresentados pelo que criaram: clareza, desejo, estrutura, narrativa e presença.",
       path: "/projetos",
       ogTitle: "Universos construídos — Projetos",
-      ogDescription: "Cada projeto parte de uma pergunta: o que precisava mudar na percepção?",
+      ogDescription:
+        "Cases organizados por contexto, plano de ação, decisões desenvolvidas e resultados alcançados.",
     }),
   component: Projetos,
 });
@@ -156,21 +157,17 @@ function Projetos() {
         <div className="absolute inset-0 bg-ink/70" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
           <p className="eyebrow text-lime">Projetos · 10</p>
-          <h1 className="font-display text-5xl md:text-8xl mt-6 leading-[0.9] max-w-4xl">
-            Os projetos aparecem pelo que <span className="italic">transformaram</span>.
+          <h1 className="font-display mt-6 max-w-5xl whitespace-nowrap text-4xl leading-[0.9] sm:text-5xl md:text-7xl">
+            Estratégia em prática.
           </h1>
           <div className="mt-10 max-w-2xl text-background/75 space-y-4 leading-relaxed">
             <p>
-              Não apresento lugares como protagonistas. Apresento raciocínios, decisões e mudanças
-              de percepção.
+              Cada projeto responde a um desafio específico de marca, comunicação ou negócio. Os
+              cases apresentam o contexto, o plano de ação, as decisões desenvolvidas e os
+              resultados alcançados.
             </p>
             <p className="font-display italic text-xl">
-              Cada projeto parte de uma pergunta:
-              <br />
-              <span className="text-lime">
-                "O que precisava mudar na forma como essa marca, campanha ou experiência era
-                percebida?"
-              </span>
+              <span className="text-lime">Contexto · Estratégia · Desenvolvimento · Resultado</span>
             </p>
           </div>
         </div>
@@ -318,33 +315,68 @@ function Projetos() {
       )}
 
       {/* Feedbacks */}
-      <section className="bg-paper/40">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-24">
-          <p className="eyebrow text-editorial">15 · Vestígios</p>
-          <h2 className="font-display text-4xl md:text-6xl mt-3 max-w-3xl leading-[1]">
-            O que fica depois da entrega.
-          </h2>
-          <p className="mt-6 max-w-xl text-ink/70">
-            Alguns resultados aparecem em números. Outros aparecem na forma como a marca passa a ser
-            entendida, lembrada e desejada.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+      <section className="bg-mist/55">
+        <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-24">
+          <div className="grid gap-8 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] md:items-end">
+            <div>
+              <p className="eyebrow text-editorial">15 · Feedbacks</p>
+              <h2 className="mt-3 max-w-3xl font-display text-3xl leading-[1] sm:text-4xl md:text-5xl">
+                O que fica depois da entrega.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-relaxed text-ink/70 md:justify-self-end md:text-base">
+              Alguns resultados aparecem em números. Outros aparecem na forma como a marca passa a
+              ser entendida, lembrada e desejada.
+            </p>
+          </div>
+
+          <div className="mt-12 flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {[
-              "A Vitória organizou em linguagem algo que a marca ainda não sabia explicar.",
-              "O projeto ganhou clareza sem perder sensibilidade.",
-              "Ela não entrega só estética. Entrega leitura, intenção e direção.",
-              "O processo transformou ideias soltas em uma marca mais clara.",
-              "A marca passou a ter uma presença mais coerente, desejável e fácil de reconhecer.",
-            ].map((t, i) => (
-              <div key={i} className="edito-card p-7">
-                <span className="font-display text-4xl text-lime leading-none">"</span>
-                <p className="font-display text-xl italic leading-snug mt-2">{t}</p>
-              </div>
+              {
+                quote: "A Vitória organizou em linguagem algo que a marca ainda não sabia explicar.",
+                initials: "VM",
+              },
+              {
+                quote: "O projeto ganhou clareza sem perder sensibilidade.",
+                initials: "DC",
+              },
+              {
+                quote: "Ela não entrega só estética. Entrega leitura, intenção e direção.",
+                initials: "IV",
+              },
+              {
+                quote: "O processo transformou ideias soltas em uma marca mais clara.",
+                initials: "NM",
+              },
+              {
+                quote:
+                  "A marca passou a ter uma presença mais coerente, desejável e fácil de reconhecer.",
+                initials: "PD",
+              },
+            ].map((item) => (
+              <article
+                key={item.quote}
+                className="flex min-h-[280px] w-[78vw] max-w-[340px] shrink-0 snap-start flex-col justify-between rounded-[8px] bg-background p-7 shadow-sm ring-1 ring-ink/10 md:w-[300px]"
+              >
+                <p className="font-display text-2xl italic leading-tight text-ink">
+                  <span className="text-lime">"</span>
+                  {item.quote}
+                  <span className="text-lime">"</span>
+                </p>
+                <span className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-ink/55">
+                  — {item.initials}
+                </span>
+              </article>
             ))}
           </div>
-          <div className="mt-12">
-            <Link to="/contato" className="btn-ink">
-              Iniciar uma conversa →
+
+          <div className="mt-6 flex flex-col items-center gap-5">
+            <div className="flex items-center gap-8 font-display text-2xl text-ink" aria-hidden="true">
+              <span>←</span>
+              <span>→</span>
+            </div>
+            <Link to="/projetos" className="btn-ghost bg-transparent">
+              Ver projetos →
             </Link>
           </div>
         </div>

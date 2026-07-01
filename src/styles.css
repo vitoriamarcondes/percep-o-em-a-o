@@ -625,7 +625,8 @@
     .hero-cover-track,
     .marquee,
     .brand-track-a,
-    .brand-track-b {
+    .brand-track-b,
+    .project-teaser-track {
       animation: none !important;
     }
 
@@ -640,4 +641,18 @@
       transform: none !important;
     }
   }
+}
+
+@keyframes project-teaser-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.project-teaser-track {
+  animation: project-teaser-marquee 22s linear infinite;
 }

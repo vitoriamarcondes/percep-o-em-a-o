@@ -2,12 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/reveal";
 import heroCoverCollageBw from "@/assets/hero-cover-collage-bw.jpeg";
+import homeFechamentoEditorial from "@/assets/home-fechamento-editorial.jpeg";
 import heroCoverMagazine from "@/assets/hero-cover-magazine.png";
 import heroCoverWall from "@/assets/hero-cover-wall.png";
 import heroImg from "@/assets/hero-editorial.jpg";
 import marcaValorPercebido from "@/assets/marca-valor-percebido.jpeg";
 import marcaValorPercebidoVideo from "@/assets/marca-valor-percebido-video.mp4";
 import mood2 from "@/assets/moodboard-2.jpg";
+import homeThoughtStarters from "@/assets/home-thought-starters.jpg";
 import { projects, FILTERS, FILTER_DESCRIPTIONS } from "@/data/projects";
 import { buildSeo } from "@/lib/seo";
 
@@ -508,8 +510,8 @@ function Home() {
       <Reveal as="section" className="bg-mist/40">
         <div className="mx-auto max-w-4xl px-6 md:px-10 py-32 text-center">
           <p className="eyebrow text-editorial">06 · Manifesto</p>
-          <h2 className="font-display text-4xl md:text-7xl mt-6 leading-[1.02]">
-            <span className="lime-underline">Percepção</span> antes da estética.
+          <h2 className="font-display text-3xl md:text-5xl mt-6 leading-[1.08]">
+            Toda escolha <span className="lime-underline">comunica</span>.
           </h2>
           <div className="mt-12 text-lg md:text-xl leading-[1.7] text-ink/80 space-y-5 font-display italic">
             <p>Uma marca não é construída apenas pelo que mostra.</p>
@@ -523,7 +525,7 @@ function Home() {
           </p>
           <div className="mt-10">
             <Link to="/metodo" className="btn-ink">
-              Ver método completo
+              Conheça minha metodologia
             </Link>
           </div>
         </div>
@@ -531,22 +533,72 @@ function Home() {
 
       {/* THOUGHT STARTERS */}
       <Reveal as="section" className="mx-auto max-w-[1400px] px-6 md:px-10 py-24">
-        <p className="eyebrow text-editorial">07 · Thought starters</p>
-        <h2 className="font-display text-4xl md:text-5xl mt-3 max-w-2xl">
-          Perguntas que organizam meu raciocínio.
-        </h2>
-        <div className="grid md:grid-cols-2 gap-5 mt-12">
-          {[
-            "O que essa marca precisa fazer as pessoas sentirem?",
-            "Que percepção precisa mudar?",
-            "O que ainda está confuso entre intenção e comunicação?",
-            "Como transformar isso em linguagem, experiência e valor percebido?",
-          ].map((q, i) => (
-            <div key={i} className="edito-card p-8 flex gap-6 hover:border-lime transition-colors">
-              <span className="font-display text-5xl text-editorial leading-none">0{i + 1}</span>
-              <p className="font-display text-2xl leading-snug">{q}</p>
+        <div className="overflow-hidden rounded-[5px] border border-ink/15 bg-mist/45">
+          <div className="grid lg:grid-cols-[0.78fr_1fr]">
+            <div className="relative min-h-[460px] overflow-hidden border-b border-ink/15 lg:border-b-0 lg:border-r">
+              <img
+                src={homeThoughtStarters}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover opacity-55 mix-blend-multiply"
+              />
+              <div className="absolute inset-0 bg-ink/10" />
+              <div className="relative flex h-full min-h-[460px] flex-col justify-between p-8 md:p-10">
+                <p className="eyebrow text-editorial">07 · Thought starters</p>
+                <h2 className="max-w-sm font-display text-5xl leading-[0.9] text-lime drop-shadow-[0_1px_0_rgba(17,16,14,0.55)] md:text-7xl">
+                  Perguntas que sustentam direção.
+                </h2>
+                <Link
+                  to="/contato"
+                  className="w-fit rounded-full border border-ink/35 bg-background/85 px-5 py-2 text-[10px] uppercase tracking-[0.18em] text-ink backdrop-blur transition hover:bg-lime"
+                >
+                  Falar sobre projeto →
+                </Link>
+              </div>
             </div>
-          ))}
+
+            <div className="p-6 md:p-8">
+              <div className="grid gap-5 sm:grid-cols-2">
+                {[
+                  {
+                    t: "Sentir",
+                    q: "O que essa marca precisa fazer as pessoas sentirem?",
+                  },
+                  {
+                    t: "Percepção",
+                    q: "Que percepção precisa mudar?",
+                  },
+                  {
+                    t: "Clareza",
+                    q: "O que ainda está confuso entre intenção e comunicação?",
+                  },
+                  {
+                    t: "Valor",
+                    q: "Como transformar isso em linguagem, experiência e valor percebido?",
+                  },
+                ].map((item, i) => (
+                  <div
+                    key={item.t}
+                    className="min-h-[190px] rounded-[7px] border border-ink/20 bg-lime/70 p-6 transition-colors hover:bg-background"
+                  >
+                    <p className="eyebrow text-editorial">0{i + 1}</p>
+                    <h3 className="mt-5 font-display text-3xl italic leading-none text-ink">
+                      {item.t}
+                    </h3>
+                    <p className="mt-5 text-sm leading-relaxed text-ink/70">{item.q}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-ink/15 bg-lime/80 py-3">
+            <div className="flex min-w-max gap-5 whitespace-nowrap text-[11px] uppercase tracking-[0.16em] text-ink/75">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <span key={i}>Leitura · Direção · Linguagem · Experiência</span>
+              ))}
+            </div>
+          </div>
         </div>
       </Reveal>
 
@@ -554,7 +606,12 @@ function Home() {
       <Reveal as="section" className="mx-auto max-w-[1400px] px-6 md:px-10 pb-24">
         <div className="edito-card relative overflow-hidden bg-ink text-background p-12 md:p-20">
           <div className="absolute inset-0 opacity-40">
-            <img src={mood2} alt="" className="w-full h-full object-cover" loading="lazy" />
+            <img
+              src={homeFechamentoEditorial}
+              alt=""
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
           </div>
           <div className="relative max-w-3xl">
             <p className="eyebrow text-lime">Fechamento editorial</p>

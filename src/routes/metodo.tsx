@@ -2,8 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import heroCoverMagazine from "@/assets/hero-cover-magazine.png";
 import heroCoverWall from "@/assets/hero-cover-wall.png";
+import metodoEntregasVitoria from "@/assets/metodo-entregas-vitoria.jpeg";
 import moodboardSite from "@/assets/moodboard-site.png";
 import processoMoodboard from "@/assets/processo-moodboard.jpeg";
+import { projects } from "@/data/projects";
 import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/metodo")({
@@ -164,6 +166,14 @@ const builds = [
     d: "Jornada do cliente, conteúdo, canais, ativações, eventos e pontos de contato.",
   },
 ];
+
+const projectTeasers = projects
+  .filter((project) => project.image && !project.image.toLowerCase().endsWith(".mp4"))
+  .slice(0, 5)
+  .map((project) => ({
+    title: project.title,
+    image: project.image as string,
+  }));
 
 const editorialFrames = [
   {
@@ -443,9 +453,9 @@ function Metodo() {
         </div>
       </section>
 
-      <section className="bg-ink py-8 md:py-14">
+      <section className="bg-background py-8 md:py-14">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-          <div className="overflow-hidden border border-ink/15 bg-background shadow-2xl">
+          <div className="overflow-hidden rounded-[5px] border border-ink/15 bg-background shadow-2xl">
             <div className="relative aspect-[4/3] overflow-hidden border-b border-ink/15 md:aspect-[16/7]">
               <img
                 src={heroCoverMagazine}
@@ -524,33 +534,97 @@ function Metodo() {
 
       <section className="bg-paper/50">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-24">
-          <p className="eyebrow text-editorial">O que eu construo</p>
-          <h2 className="font-display text-4xl md:text-6xl mt-3 max-w-3xl leading-[1]">
-            Cada projeto pede um <span className="lime-underline">sistema diferente</span>.
-          </h2>
-          <div className="mt-6 max-w-2xl space-y-4 text-ink/70 leading-relaxed">
-            <p>Nem toda marca precisa das mesmas entregas.</p>
-            <p>
-              Algumas começam pelo posicionamento. Outras precisam reorganizar sua comunicação,
-              criar uma identidade visual, desenvolver campanhas ou estruturar sua presença no
-              mercado.
-            </p>
-            <p>
-              Meu trabalho é identificar o que faz sentido para cada contexto e construir um
-              sistema que conecte estratégia, expressão e experiência de forma coerente.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
-            {builds.map((b, i) => (
-              <div
-                key={b.t}
-                className="edito-card p-7 group hover:bg-ink hover:text-background transition-colors duration-500"
-              >
-                <span className="eyebrow text-editorial group-hover:text-lime">0{i + 1}</span>
-                <h3 className="font-display text-2xl mt-6">{b.t}</h3>
-                <p className="mt-3 text-sm opacity-75 leading-relaxed">{b.d}</p>
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.55fr)] lg:items-end">
+            <div>
+              <p className="eyebrow text-editorial">O que eu construo</p>
+              <h2 className="font-display text-4xl md:text-6xl mt-3 max-w-3xl leading-[1]">
+                Cada projeto pede um <span className="lime-underline">sistema diferente</span>.
+              </h2>
+              <div className="mt-6 max-w-2xl space-y-4 text-ink/70 leading-relaxed">
+                <p>Nem toda marca precisa das mesmas entregas.</p>
+                <p>
+                  Algumas começam pelo posicionamento. Outras precisam reorganizar sua comunicação,
+                  criar uma identidade visual, desenvolver campanhas ou estruturar sua presença no
+                  mercado.
+                </p>
+                <p className="font-semibold">
+                  Meu trabalho é identificar o que faz sentido para cada contexto e construir um
+                  sistema que conecte estratégia, expressão e experiência de forma coerente.
+                </p>
               </div>
-            ))}
+            </div>
+
+            <Link
+              to="/projetos"
+              className="group block overflow-hidden rounded-[5px] border border-ink/15 bg-background transition-colors duration-300 hover:border-ink"
+            >
+              <div className="flex items-center justify-between border-b border-ink/15 px-4 py-3">
+                <span className="eyebrow text-[10px] text-editorial">Criações</span>
+              </div>
+              <div className="relative h-52 overflow-hidden bg-ink">
+                <div className="absolute inset-y-0 left-0 flex w-max gap-2 p-2 project-teaser-track group-hover:[animation-play-state:paused]">
+                  {[...projectTeasers, ...projectTeasers].map((project, index) => (
+                    <div
+                      key={`${project.title}-${index}`}
+                      className="relative h-full w-32 shrink-0 overflow-hidden rounded-[4px] bg-paper"
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-ink/35 via-transparent to-ink/35" />
+              </div>
+              <div className="px-4 py-4">
+                <span className="inline-flex text-xs uppercase tracking-[0.18em] text-ink underline underline-offset-4">
+                  Ver projetos →
+                </span>
+              </div>
+            </Link>
+          </div>
+
+          <div className="mt-14 overflow-hidden rounded-[5px] border border-ink/15 bg-background">
+            <div className="grid grid-cols-[minmax(150px,0.9fr)_minmax(0,1.55fr)] items-stretch">
+              <div className="relative h-full overflow-hidden border-r border-ink/15">
+                <img
+                  src={metodoEntregasVitoria}
+                  alt="Vitória Marcondes"
+                  className="h-full w-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-ink/5" />
+                <span className="absolute left-5 top-5 eyebrow text-ink">Quick links</span>
+                <span className="absolute bottom-5 left-5 bg-background/90 px-3 py-1 eyebrow text-[10px] text-ink backdrop-blur">
+                  Vitória Marcondes
+                </span>
+              </div>
+
+              <div className="grid grid-rows-5 divide-y divide-ink/15">
+                {builds.map((b, i) => (
+                  <div
+                    key={b.t}
+                    className="group grid min-h-[132px] grid-cols-[56px_1fr] transition-colors duration-300 hover:bg-ink hover:text-background sm:grid-cols-[72px_1fr] lg:min-h-[148px]"
+                  >
+                    <div className="flex items-center justify-center border-r border-ink/15">
+                      <span className="origin-center -rotate-90 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.18em] text-editorial group-hover:text-lime sm:text-sm">
+                        0{i + 1}
+                      </span>
+                    </div>
+                    <div className="flex flex-col justify-center px-5 py-5 sm:px-8">
+                      <h3 className="font-display text-2xl leading-none sm:text-3xl">
+                        {b.t}
+                      </h3>
+                      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink/65 group-hover:text-background/75">
+                        {b.d}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
