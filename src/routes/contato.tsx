@@ -22,7 +22,7 @@ function Contato() {
       <p className="eyebrow text-editorial">16 · Contato · Fechamento editorial</p>
       <TypewriterText
         as="h1"
-        speed={32}
+        speed={20}
         className="font-display text-5xl md:text-8xl mt-4 leading-[0.9] max-w-5xl"
         segments={[
           { text: "Se a sua marca precisa de mais do que aparência, talvez ela precise de " },

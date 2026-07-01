@@ -1,16 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { LazyVideo } from "@/components/lazy-video";
 import { Reveal } from "@/components/reveal";
-import heroCoverCollageBw from "@/assets/hero-cover-collage-bw.jpeg";
+import heroCoverCollageBw from "@/assets/hero-cover-collage-bw.webp";
 import homeFechamentoEditorial from "@/assets/home-fechamento-editorial.jpeg";
-import heroCoverMagazine from "@/assets/hero-cover-magazine.png";
-import heroCoverWall from "@/assets/hero-cover-wall.png";
-import heroImg from "@/assets/hero-editorial.jpg";
-import marcaValorPercebido from "@/assets/marca-valor-percebido.jpeg";
+import heroCoverMagazine from "@/assets/hero-cover-magazine.webp";
+import heroCoverWall from "@/assets/hero-cover-wall.webp";
+import heroImg from "@/assets/hero-editorial.webp";
+import marcaValorPercebido from "@/assets/marca-valor-percebido.webp";
 import marcaValorPercebidoVideo from "@/assets/marca-valor-percebido-video.mp4";
 import mood2 from "@/assets/moodboard-2.jpg";
 import homeThoughtStarters from "@/assets/home-thought-starters.jpg";
-import { projects, FILTERS, FILTER_DESCRIPTIONS } from "@/data/projects";
+import { FILTERS, FILTER_DESCRIPTIONS, projectSummaries, type ProjectSummary } from "@/data/projects-meta";
 import { buildSeo } from "@/lib/seo";
 
 const marqueeItems = [
@@ -102,7 +103,7 @@ function Home() {
   const [filter, setFilter] = useState<string>("Todos");
   const statsRef = useRef<HTMLElement>(null);
   const [statsActive, setStatsActive] = useState(false);
-  const visible = projects.filter((p) => filter === "Todos" || p.filters.includes(filter));
+  const visible = projectSummaries.filter((p) => filter === "Todos" || p.filters.includes(filter));
 
   useEffect(() => {
     const element = statsRef.current;
@@ -195,6 +196,9 @@ function Home() {
                         src={image.src}
                         alt={image.alt}
                         className="hero-cover-slide"
+                        fetchPriority={index === 0 ? "high" : undefined}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        decoding="async"
                       />
                     ))}
                   </div>
@@ -326,13 +330,9 @@ function Home() {
           </div>
           <div className="lg:col-span-5 relative">
             <div className="edito-card aspect-[4/5]">
-              <video
+              <LazyVideo
                 src={marcaValorPercebidoVideo}
                 aria-label="Processo criativo em movimento"
-                autoPlay
-                muted
-                loop
-                playsInline
                 className="w-full h-full object-cover"
               />
             </div>
@@ -660,7 +660,7 @@ function AnimatedStatNumber({
 
     let frame = 0;
     const start = performance.now();
-    const duration = 1450;
+    const duration = 850;
 
     const tick = (time: number) => {
       const progress = Math.min((time - start) / duration, 1);
@@ -718,7 +718,7 @@ function BrandLogo({
   );
 }
 
-function ProjectCard({ p }: { p: (typeof projects)[number] }) {
+function ProjectCard({ p }: { p: ProjectSummary }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const leadRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);

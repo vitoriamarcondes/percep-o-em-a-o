@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import heroCoverMagazine from "@/assets/hero-cover-magazine.png";
-import heroCoverWall from "@/assets/hero-cover-wall.png";
+import heroCoverMagazine from "@/assets/hero-cover-magazine.webp";
+import heroCoverWall from "@/assets/hero-cover-wall.webp";
 import metodoEntregasVitoria from "@/assets/metodo-entregas-vitoria.jpeg";
 import moodboardSite from "@/assets/moodboard-site.png";
 import processoMoodboard from "@/assets/processo-moodboard.jpeg";
-import { projects } from "@/data/projects";
+import { projectSummaries } from "@/data/projects-meta";
 import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/metodo")({
@@ -167,7 +167,7 @@ const builds = [
   },
 ];
 
-const projectTeasers = projects
+const projectTeasers = projectSummaries
   .filter((project) => project.image && !project.image.toLowerCase().endsWith(".mp4"))
   .slice(0, 5)
   .map((project) => ({

@@ -11,7 +11,7 @@ export function TypewriterText({
   segments,
   className,
   as = "span",
-  speed = 45,
+  speed = 28,
 }: {
   segments: TypewriterSegment[];
   className?: string;
@@ -42,7 +42,7 @@ export function TypewriterText({
           observer.disconnect();
         }
       },
-      { threshold: 0.35 },
+      { threshold: 0.15 },
     );
 
     observer.observe(el);

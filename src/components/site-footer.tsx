@@ -19,7 +19,7 @@ export function SiteFooter() {
             <p className="eyebrow text-lime mb-6">Manifesto contínuo</p>
             <TypewriterText
               as="h2"
-              speed={55}
+              speed={32}
               className="font-display text-4xl md:text-6xl leading-[0.95]"
               segments={headlineSegments}
             />

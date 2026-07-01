@@ -1,6 +1,8 @@
 import { createFileRoute, Link, useLocation } from "@tanstack/react-router";
+import { LazyVideo } from "@/components/lazy-video";
 import { useEffect, useState } from "react";
-import { projects, FILTERS, FILTER_DESCRIPTIONS } from "@/data/projects";
+import { projects } from "@/data/projects";
+import { FILTERS, FILTER_DESCRIPTIONS } from "@/data/projects-meta";
 import {
   Carousel,
   CarouselContent,
@@ -144,13 +146,9 @@ function Projetos() {
     <div>
       {/* Transition intro */}
       <section className="relative overflow-hidden bg-ink text-background">
-        <video
+        <LazyVideo
           src={marcaValorPercebidoVideo}
-          aria-hidden="true"
-          autoPlay
-          muted
-          loop
-          playsInline
+          aria-label="Transição editorial de projetos"
           preload="metadata"
           className="absolute inset-0 h-full w-full object-cover opacity-35"
         />
@@ -228,6 +226,7 @@ function Projetos() {
                       src={p.image}
                       alt={p.title}
                       loading="lazy"
+                      decoding="async"
                       className={`w-full h-full group-hover:scale-105 transition-transform duration-700 ${
                         p.id === "presenca-permanece" ? "object-contain bg-ink" : "object-cover"
                       }`}
@@ -481,6 +480,8 @@ function ProjectGallery({ images, title }: { images: string[]; title: string }) 
                     <img
                       src={image}
                       alt={`${title} - imagem ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
                     />
                   )}
@@ -559,6 +560,8 @@ function ProjectGallery({ images, title }: { images: string[]; title: string }) 
             <img
               src={previewMedia}
               alt={`${title} - imagem ampliada`}
+              loading="lazy"
+              decoding="async"
               className="max-h-full max-w-full object-contain"
               onClick={(event) => event.stopPropagation()}
             />

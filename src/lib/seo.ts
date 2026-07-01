@@ -1,6 +1,6 @@
 export const SITE_URL = "https://www.vitoriamarcondes.com";
 export const SITE_NAME = "Vitória Marcondes";
-export const DEFAULT_OG_IMAGE = "/aura/1.png";
+export const DEFAULT_OG_IMAGE = "/aura/og.webp";
 
 type SeoOptions = {
   title: string;
@@ -46,8 +46,8 @@ export function buildSeo({
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:locale", content: "pt_BR" },
       { property: "og:image", content: imageUrl },
-      { property: "og:image:width", content: "1920" },
-      { property: "og:image:height", content: "1080" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       {
         property: "og:image:alt",
         content: "Direção criativa e estratégia de marca por Vitória Marcondes",

@@ -95,6 +95,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="pt-BR">
       <head>
         <HeadContent />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js');",
+          }}
+        />
       </head>
       <body>
         {children}
