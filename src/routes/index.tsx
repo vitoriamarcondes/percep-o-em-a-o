@@ -10,7 +10,7 @@ import heroImg from "@/assets/hero-editorial.webp";
 import marcaValorPercebido from "@/assets/marca-valor-percebido.webp";
 import marcaValorPercebidoVideo from "@/assets/marca-valor-percebido-video.mp4";
 import mood2 from "@/assets/moodboard-2.jpg";
-import homeThoughtStarters from "@/assets/home-thought-starters.jpg";
+import homeThoughtStartersVideo from "@/assets/home-thought-starters-video.mp4";
 import { FILTERS, FILTER_DESCRIPTIONS, projectSummaries, type ProjectSummary } from "@/data/projects-meta";
 import { buildSeo } from "@/lib/seo";
 
@@ -308,18 +308,28 @@ function Home() {
               <span className="lime-underline italic">única</span>?
             </h2>
             <div className="mt-10 max-w-xl text-ink/75 space-y-4 text-base leading-relaxed">
-              <p>Marcas também têm personalidade.</p>
+              <p className="font-semibold">Marcas também têm personalidade.</p>
               <p>
-                Elas são percebidas pelas referências que escolhem, pela forma como se apresentam,
-                pelos espaços que ocupam e pelas conversas que decidem participar.
+                Elas são percebidas pelas{" "}
+                <strong className="font-semibold text-ink">referências</strong> que escolhem, pela
+                forma como se apresentam, pelos{" "}
+                <strong className="font-semibold text-ink">espaços</strong> que ocupam e pelas
+                conversas que decidem participar.
               </p>
               <p>
-                Antes de criar qualquer direção, eu observo esses códigos. Entendo o contexto, o
-                mercado, o comportamento das pessoas e a imagem que está sendo construída hoje.
+                Antes de criar qualquer direção, eu observo esses códigos. Entendo o{" "}
+                <strong className="font-semibold text-ink">contexto</strong>, o{" "}
+                <strong className="font-semibold text-ink">mercado</strong>, o{" "}
+                <strong className="font-semibold text-ink">comportamento</strong> das pessoas e a{" "}
+                <strong className="font-semibold text-ink">imagem</strong> que está sendo
+                construída hoje.
               </p>
               <p>
-                Porque direção criativa não é apenas uma questão estética, mas sim, a forma como uma
-                marca se posiciona, gera identificação e constrói relevância.
+                Porque <strong className="font-semibold text-ink">direção criativa</strong> não é
+                apenas uma questão estética, mas sim, a forma como uma marca se{" "}
+                <strong className="font-semibold text-ink">posiciona</strong>, gera{" "}
+                <strong className="font-semibold text-ink">identificação</strong> e constrói{" "}
+                <strong className="font-semibold text-ink">relevância</strong>.
               </p>
             </div>
             <div className="mt-10 inline-block">
@@ -509,19 +519,31 @@ function Home() {
       {/* MANIFESTO */}
       <Reveal as="section" className="bg-mist/40">
         <div className="mx-auto max-w-4xl px-6 md:px-10 py-32 text-center">
-          <p className="eyebrow text-editorial">06 · Manifesto</p>
+          <p className="eyebrow text-editorial">06 · Tese</p>
           <h2 className="font-display text-3xl md:text-5xl mt-6 leading-[1.08]">
-            Toda escolha <span className="lime-underline">comunica</span>.
+            Toda decisão{" "}
+            <span className="lime-underline" style={{ paddingLeft: 0 }}>
+              comunica
+            </span>
+            .
           </h2>
           <div className="mt-12 text-lg md:text-xl leading-[1.7] text-ink/80 space-y-5 font-display italic">
-            <p>Uma marca não é construída apenas pelo que mostra.</p>
-            <p>Ela é construída pelo que repete, sustenta e faz sentir.</p>
-            <p>Antes de criar, eu entendo.</p>
-            <p>Antes de propor, eu leio.</p>
-            <p>Antes de desenhar, eu procuro o que precisa ser percebido.</p>
+            <p>
+              Identidade visual, linguagem, campanhas e experiências não funcionam isoladamente. Elas
+              constroem a forma como uma marca é{" "}
+              <strong className="font-semibold text-ink">reconhecida, lembrada e valorizada</strong>.
+            </p>
+            <p>
+              Por isso, cada projeto começa pela{" "}
+              <strong className="font-semibold text-ink">investigação do contexto</strong> e pela
+              definição de uma direção certa antes de qualquer decisão visual.
+            </p>
           </div>
-          <p className="mt-14 font-display text-3xl md:text-4xl">
-            O bonito chama atenção. O <span className="italic">coerente</span> permanece.
+          <p className="mt-14 font-display text-2xl md:text-3xl">
+            A estratégia organiza decisões que se transformam em{" "}
+            <span className="lime-underline">identidade</span>,{" "}
+            <span className="lime-underline">comunicação</span> e{" "}
+            <span className="lime-underline">experiência</span>.
           </p>
           <div className="mt-10">
             <Link to="/metodo" className="btn-ink">
@@ -536,21 +558,29 @@ function Home() {
         <div className="overflow-hidden rounded-[5px] border border-ink/15 bg-mist/45">
           <div className="grid lg:grid-cols-[0.78fr_1fr]">
             <div className="relative min-h-[460px] overflow-hidden border-b border-ink/15 lg:border-b-0 lg:border-r">
-              <img
-                src={homeThoughtStarters}
-                alt=""
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover opacity-55 mix-blend-multiply"
+              <video
+                src={homeThoughtStartersVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-cover grayscale"
               />
-              <div className="absolute inset-0 bg-ink/10" />
+              <div className="absolute inset-0 bg-ink/50" />
+              <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-80 mix-blend-screen">
+                <div className="absolute -left-20 top-14 h-28 w-[58%] rotate-[-16deg] bg-gradient-to-r from-transparent via-lime/45 to-transparent blur-2xl" />
+                <div className="absolute left-[28%] top-0 h-full w-20 rotate-[18deg] bg-gradient-to-b from-background/45 via-mist/35 to-transparent blur-xl" />
+                <div className="absolute right-10 top-20 h-36 w-36 rounded-full border border-background/40 bg-lime/15 blur-lg" />
+              </div>
               <div className="relative flex h-full min-h-[460px] flex-col justify-between p-8 md:p-10">
-                <p className="eyebrow text-editorial">07 · Thought starters</p>
-                <h2 className="max-w-sm font-display text-5xl leading-[0.9] text-lime drop-shadow-[0_1px_0_rgba(17,16,14,0.55)] md:text-7xl">
-                  Perguntas que sustentam direção.
+                <p className="eyebrow text-lime">07 · Thought starters</p>
+                <h2 className="max-w-sm font-display text-2xl leading-[1] text-background drop-shadow-[0_1px_0_rgba(17,16,14,0.55)] md:text-4xl">
+                  Perguntas que direcionam cada <span className="italic text-lime">projeto.</span>
                 </h2>
                 <Link
                   to="/contato"
-                  className="w-fit rounded-full border border-ink/35 bg-background/85 px-5 py-2 text-[10px] uppercase tracking-[0.18em] text-ink backdrop-blur transition hover:bg-lime"
+                  className="w-fit rounded-full border border-lime bg-lime px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink backdrop-blur transition hover:border-ink hover:bg-ink hover:text-lime"
                 >
                   Falar sobre projeto →
                 </Link>
@@ -561,20 +591,38 @@ function Home() {
               <div className="grid gap-5 sm:grid-cols-2">
                 {[
                   {
-                    t: "Sentir",
-                    q: "O que essa marca precisa fazer as pessoas sentirem?",
+                    t: "Desafio",
+                    q: (
+                      <>
+                        Qual desafio essa marca <strong className="font-semibold">precisa resolver</strong>?
+                      </>
+                    ),
                   },
                   {
-                    t: "Percepção",
-                    q: "Que percepção precisa mudar?",
+                    t: "Espaço",
+                    q: (
+                      <>
+                        Que espaço ela <strong className="font-semibold">pode ocupar</strong>?
+                      </>
+                    ),
                   },
                   {
-                    t: "Clareza",
-                    q: "O que ainda está confuso entre intenção e comunicação?",
+                    t: "Decisões",
+                    q: (
+                      <>
+                        Quais decisões sustentam esse{" "}
+                        <strong className="font-semibold">posicionamento</strong>?
+                      </>
+                    ),
                   },
                   {
-                    t: "Valor",
-                    q: "Como transformar isso em linguagem, experiência e valor percebido?",
+                    t: "Experiência",
+                    q: (
+                      <>
+                        Como transformar essa estratégia em uma{" "}
+                        <strong className="font-semibold">experiência de marca</strong>?
+                      </>
+                    ),
                   },
                 ].map((item, i) => (
                   <div
@@ -585,17 +633,27 @@ function Home() {
                     <h3 className="mt-5 font-display text-3xl italic leading-none text-ink">
                       {item.t}
                     </h3>
-                    <p className="mt-5 text-sm leading-relaxed text-ink/70">{item.q}</p>
+                    <p className="mt-5 text-base leading-relaxed text-ink/75 md:text-lg">
+                      {item.q}
+                    </p>
                   </div>
                 ))}
               </div>
+              <Link
+                to="/metodo"
+                className="mt-6 inline-flex w-fit rounded-full border border-ink bg-ink px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-lime transition hover:border-lime hover:bg-lime hover:text-ink"
+              >
+                Conheça minha metodologia →
+              </Link>
             </div>
           </div>
 
           <div className="border-t border-ink/15 bg-lime/80 py-3">
             <div className="flex min-w-max gap-5 whitespace-nowrap text-[11px] uppercase tracking-[0.16em] text-ink/75">
               {Array.from({ length: 8 }).map((_, i) => (
-                <span key={i}>Leitura · Direção · Linguagem · Experiência</span>
+                <span key={i}>
+                  Brand Strategy · Creative Direction · Consumer Insights · Brand Experience
+                </span>
               ))}
             </div>
           </div>
@@ -614,14 +672,14 @@ function Home() {
             />
           </div>
           <div className="relative max-w-3xl">
-            <p className="eyebrow text-lime">Fechamento editorial</p>
+            <p className="eyebrow text-lime">Brand Strategy</p>
             <h2 className="font-display text-4xl md:text-6xl mt-4 leading-[1]">
-              Se a sua marca precisa de mais do que aparência,
-              <br />
-              talvez ela precise de <span className="italic">direção</span>.
+              A <span className="italic text-lime">estratégia</span> define o lugar que uma marca
+              conquista.
             </h2>
             <p className="mt-8 text-background/80 max-w-xl">
-              Vamos construir uma presença mais clara, sensível e estrategicamente desejável.
+              Cada projeto começa entendendo onde a marca quer chegar e o que precisa acontecer para
+              que ela seja <strong className="font-semibold text-background">escolhida</strong>.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link to="/contato" className="btn-ink bg-lime text-ink hover:bg-background">
@@ -631,7 +689,7 @@ function Home() {
                 to="/projetos"
                 className="btn-ghost border-background text-background hover:bg-background hover:text-ink"
               >
-                Ver universos construídos
+                Conheça meu trabalho
               </Link>
             </div>
           </div>

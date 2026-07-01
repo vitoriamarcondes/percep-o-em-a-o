@@ -7,7 +7,7 @@ const headlineSegments = [
   { text: "\n", br: true },
   { text: "em " },
   { text: "presença", className: "text-lime" },
-  { text: "." },
+  { text: ".", className: "text-lime" },
 ];
 
 export function SiteFooter() {
@@ -16,7 +16,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-20">
         <div className="grid md:grid-cols-12 gap-12">
           <div className="md:col-span-7">
-            <p className="eyebrow text-lime mb-6">Manifesto contínuo</p>
+            <p className="eyebrow text-lime mb-6">TESE EDITORIAL</p>
             <TypewriterText
               as="h2"
               speed={32}
@@ -24,9 +24,10 @@ export function SiteFooter() {
               segments={headlineSegments}
             />
             <p className="mt-8 max-w-md text-background/70 text-sm leading-relaxed">
-              Brand Strategy · Creative Direction · Visual Storytelling.
+              <span className="text-lime">Brand Strategy · Creative Direction · Brand Intelligence</span>
               <br />
-              Para marcas que querem ser lembradas pelo que significam.
+              Projetos desenvolvidos a partir de pesquisa, contexto e direção estratégica para
+              construção de marcas.
             </p>
           </div>
           <div className="md:col-span-5 grid grid-cols-2 gap-8 text-sm">
